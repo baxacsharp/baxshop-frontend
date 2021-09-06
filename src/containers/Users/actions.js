@@ -14,13 +14,11 @@ export const fetchUsers = (filter) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/user/search`, {
-        params: {
-          search: filter.value,
-        },
-      })
-
-      dispatch({ type: FETCH_USERS, payload: response.data.users })
+      const response = await axios.get(
+        endpoint + `/user/search?firstName=/^` + filter + "/i"
+      )
+      console.log(response)
+      dispatch({ type: FETCH_USERS, payload: response.data })
     } catch (error) {
       handleError(error, dispatch)
     }

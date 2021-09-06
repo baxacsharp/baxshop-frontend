@@ -90,7 +90,7 @@ export const fetchCategories = () => {
 
       dispatch({
         type: FETCH_CATEGORIES,
-        payload: response.data.categories,
+        payload: response.data,
       })
     } catch (error) {
       handleError(error, dispatch)
@@ -107,13 +107,11 @@ export const fetchCategory = (id) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/category/${id}`)
 
-      response.data.category.products = formatSelectOptions(
-        response.data.category.products
-      )
+      response.data.products = formatSelectOptions(response.data.products)
 
       dispatch({
         type: FETCH_CATEGORY,
-        payload: response.data.category,
+        payload: response.data,
       })
     } catch (error) {
       handleError(error, dispatch)
@@ -151,7 +149,7 @@ export const addCategory = () => {
         return dispatch({ type: SET_CATEGORY_FORM_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(`/api/category/add`, newCategory)
+      const response = await axios.post(endpoint + `/category/add`, newCategory)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

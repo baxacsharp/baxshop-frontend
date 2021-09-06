@@ -4,51 +4,51 @@
  *
  */
 
-import React from 'react';
+import React from "react"
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux"
 
-import actions from '../../actions';
+import actions from "../../actions"
 
-import CategoryList from '../../components/Manager/CategoryList';
-import SubPage from '../../components/Manager/SubPage';
-import LoadingIndicator from '../../components/Common/LoadingIndicator';
-import NotFound from '../../components/Common/NotFound';
+import CategoryList from "../../components/Manager/CategoryList"
+import SubPage from "../../components/Manager/SubPage"
+import LoadingIndicator from "../../components/Common/LoadingIndicator"
+import NotFound from "../../components/Common/NotFound"
 
 class List extends React.PureComponent {
   componentDidMount() {
-    this.props.fetchCategories();
+    this.props.fetchCategories()
   }
 
   render() {
-    const { history, categories, isLoading } = this.props;
+    const { history, categories, category, isLoading } = this.props
 
     return (
       <>
         <SubPage
-          title='Categories'
-          actionTitle='Add'
-          handleAction={() => history.push('/dashboard/category/add')}
+          title="Categories"
+          actionTitle="Add"
+          handleAction={() => history.push("/dashboard/category/add")}
         >
           {isLoading ? (
             <LoadingIndicator inline />
           ) : categories.length > 0 ? (
             <CategoryList categories={categories} />
           ) : (
-            <NotFound message='no categories found.' />
+            <NotFound message="no categories found." />
           )}
         </SubPage>
       </>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    categories: state.category.categories,
+    categories: state.category.category,
     isLoading: state.category.isLoading,
-    user: state.account.user
-  };
-};
+    user: state.account.user,
+  }
+}
 
-export default connect(mapStateToProps, actions)(List);
+export default connect(mapStateToProps, actions)(List)

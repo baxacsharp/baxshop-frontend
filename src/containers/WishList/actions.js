@@ -67,8 +67,8 @@ export const fetchWishlist = () => {
       dispatch({ type: SET_WISHLIST_LOADING, payload: true })
 
       const response = await axios.get(endpoint + `/wishList`)
-
-      dispatch({ type: FETCH_WISHLIST, payload: response.data.wishlist })
+      console.log(response)
+      dispatch({ type: FETCH_WISHLIST, payload: response.data })
     } catch (error) {
       handleError(error, dispatch)
     } finally {

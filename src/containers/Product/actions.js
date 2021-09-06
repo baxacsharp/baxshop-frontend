@@ -92,7 +92,7 @@ export const filterProducts = (n, v) => {
       })
       dispatch({
         type: FETCH_STORE_PRODUCTS,
-        payload: response.data.products,
+        payload: response.data,
       })
     } catch (error) {
       handleError(error, dispatch)
@@ -112,7 +112,7 @@ export const fetchProducts = () => {
 
       dispatch({
         type: FETCH_PRODUCTS,
-        payload: response.data.products,
+        payload: response.data,
       })
     } catch (error) {
       handleError(error, dispatch)
@@ -140,7 +140,7 @@ export const fetchStoreProducts = () => {
       })
       dispatch({
         type: FETCH_STORE_PRODUCTS,
-        payload: response.data.products,
+        payload: response.data,
       })
     } catch (error) {
       handleError(error, dispatch)
@@ -157,14 +157,12 @@ export const fetchProduct = (id) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/products/${id}`)
 
-      const inventory = response.data.product.quantity
-      if (response.data.product.brand) {
-        response.data.product.brand = formatSelectOptions([
-          response.data.product.brand,
-        ])[0]
+      const inventory = response.data.quantity
+      if (response.data.brand) {
+        response.data.brand = formatSelectOptions([response.data.brand])[0]
       }
 
-      const product = { ...response.data.product, inventory }
+      const product = { ...response.data, inventory }
 
       dispatch({
         type: FETCH_PRODUCT,
@@ -185,8 +183,8 @@ export const fetchStoreProduct = (slug) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/products/item/${slug}`)
 
-      const inventory = response.data.product.quantity
-      const product = { ...response.data.product, inventory }
+      const inventory = response.data.quantity
+      const product = { ...response.data, inventory }
 
       dispatch({
         type: FETCH_STORE_PRODUCT,
@@ -209,7 +207,7 @@ export const fetchBrandProducts = (slug) => {
       const response = await axios.get(
         endpoint + `/products/list/brand/${slug}`
       )
-
+      console.log(response)
       dispatch({
         type: FETCH_PRODUCTS,
         payload: response.data.products,
@@ -231,7 +229,7 @@ export const fetchCategoryProducts = (slug) => {
       const response = await axios.get(
         endpoint + `/products/list/category/${slug}`
       )
-
+      console.log(response)
       dispatch({
         type: FETCH_PRODUCTS,
         payload: response.data.products,
@@ -249,8 +247,8 @@ export const fetchProductsSelect = () => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/products/list/select`)
-
-      const formattedProducts = formatSelectOptions(response.data.products)
+      console.log(response)
+      const formattedProducts = formatSelectOptions(response.data)
 
       dispatch({
         type: FETCH_PRODUCTS_SELECT,
@@ -339,7 +337,7 @@ export const addProduct = () => {
         // dispatch(success(successfulOptions));
         dispatch({
           type: ADD_PRODUCT,
-          payload: response.data.product,
+          payload: response.data,
         })
         dispatch(resetProduct())
         dispatch(goBack())

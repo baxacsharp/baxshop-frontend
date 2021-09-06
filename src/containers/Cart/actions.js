@@ -29,8 +29,8 @@ import { toggleCart } from "../Navigation/actions"
 export const handleAddToCart = (product) => {
   return (dispatch, getState) => {
     product.quantity = Number(getState().product.productShopData.quantity)
-    product.totalPrice = product.quantity * product.price
-    product.totalPrice = parseFloat(product.totalPrice.toFixed(2))
+    product.totalPrice = product.quantity * product.product.price
+    // product.totalPrice = parseFloat(product.totalPrice.toFixed(2))
     const inventory = getState().product.storeProduct.inventory
 
     const result = calculatePurchaseQuantity(inventory)
@@ -80,10 +80,12 @@ export const calculateCartTotal = () => {
     let total = 0
 
     cartItems.map((item) => {
-      total += item.price * item.quantity
+      console.log(item)
+      total += item.product.price * item.quantity
     })
 
-    total = parseFloat(total.toFixed(2))
+    // total = parseFloat(total.toFixed(2))
+    console.log(total)
 
     dispatch({
       type: HANDLE_CART_TOTAL,
