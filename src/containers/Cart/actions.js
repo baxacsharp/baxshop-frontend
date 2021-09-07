@@ -27,9 +27,11 @@ import { allFieldsValidation } from "../../utils/validation"
 import { toggleCart } from "../Navigation/actions"
 // Handle Add To Cart
 export const handleAddToCart = (product) => {
+  console.log(product)
   return (dispatch, getState) => {
-    product.quantity = Number(getState().product.productShopData.quantity)
-    product.totalPrice = product.quantity * product.product.price
+    product.quantity = Number(getState().cart.cartItems.quantity)
+    product.price = Number(getState().cart.cartItems.product.price)
+    product.totalPrice = product.quantity * product.price
     // product.totalPrice = parseFloat(product.totalPrice.toFixed(2))
     const inventory = getState().product.storeProduct.inventory
 
@@ -142,14 +144,11 @@ export const getCartId = () => {
       const cartId = localStorage.getItem("cart_id")
       const cartItems = getState().cart.cartItems
       const products = getCartItems(cartItems)
-
       // create cart id if there is no one
-      if (!cartId) {
-        let endpoint = process.env.REACT_APP_BACKEND_URL
-        const response = await axios.post(endpoint + `/cart`, { products })
-
-        dispatch(setCartId(response.data.cartId))
-      }
+      let endpoint = process.env.REACT_APP_BACKEND_URL
+      const response = await axios.post(endpoint + `/cart`, { products })
+      // console.log(response)
+      dispatch(setCartId(response.data._id))
     } catch (error) {
       handleError(error, dispatch)
     }
@@ -183,9 +182,9 @@ const getCartItems = (cartItems) => {
   cartItems.map((item) => {
     const newItem = {}
     newItem.quantity = item.quantity
-    newItem.price = item.price
-    newItem.taxable = item.taxable
-    newItem.product = item._id
+    newItem.price = item.product.price
+    newItem.taxable = item.product.taxable
+    newItem.product = item.product._id
     newCartItems.push(newItem)
   })
 

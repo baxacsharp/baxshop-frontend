@@ -9,6 +9,7 @@ import { fetchStoreProducts } from "../Product/actions"
 import axios from "axios"
 
 import {
+  REMOVE_WISHLIST,
   FETCH_WISHLIST,
   SET_WISHLIST_LOADING,
   WISHLIST_CHANGE,
@@ -29,7 +30,6 @@ export const updateWishlist = (e) => {
         const wishlist = await getState().wishlist.wishlistForm
 
         const newWishlist = {
-          isLiked: wishlist.value,
           product: wishlist.name,
         }
         let endpoint = process.env.REACT_APP_BACKEND_URL
@@ -52,6 +52,30 @@ export const updateWishlist = (e) => {
           autoDismiss: 1,
         }
         // dispatch(warning(retryOptions));
+      }
+    } catch (error) {
+      handleError(error, dispatch)
+    }
+  }
+}
+export const deleteWishlist = (id) => {
+  return async (dispatch) => {
+    try {
+      let endpoint = process.env.REACT_APP_BACKEND_URL
+      const response = await axios.delete(endpoint + `/wishList/${id}`)
+
+      // const successfulOptions = {
+      //   title: `${response.data.message}`,
+      //   position: 'tr',
+      //   autoDismiss: 1
+      // };
+
+      if (response.data) {
+        // dispatch(success(successfulOptions));
+        dispatch({
+          type: REMOVE_WISHLIST,
+          payload: id,
+        })
       }
     } catch (error) {
       handleError(error, dispatch)

@@ -6,39 +6,49 @@
 
 import {
   FETCH_WISHLIST,
+  REMOVE_WISHLIST,
   SET_WISHLIST_LOADING,
-  WISHLIST_CHANGE
-} from './constants';
+  WISHLIST_CHANGE,
+} from "./constants"
 
 const initialState = {
   wishlist: [],
   isLoading: false,
-  wishlistForm: {}
-};
+  wishlistForm: {},
+}
 
 const wishListReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_WISHLIST:
       return {
         ...state,
-        wishlist: action.payload
-      };
+        wishlist: action.payload,
+      }
+    case REMOVE_WISHLIST:
+      const index = state.wishlist.findIndex((r) => r._id === action.payload)
+      return {
+        ...state,
+        wishlist: [
+          ...state.wishlist.slice(0, index),
+          ...state.wishlist.slice(index + 1),
+        ],
+      }
     case SET_WISHLIST_LOADING:
       return {
         ...state,
-        isLoading: action.payload
-      };
+        isLoading: action.payload,
+      }
     case WISHLIST_CHANGE:
       return {
         ...state,
         wishlistForm: {
           ...state.wishlistForm,
-          ...action.payload
-        }
-      };
+          ...action.payload,
+        },
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default wishListReducer;
+export default wishListReducer

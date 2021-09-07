@@ -4,21 +4,21 @@
  *
  */
 
-import React from 'react';
-import { Card, CardBody, CardHeader, Badge } from 'reactstrap';
+import React from "react"
+import { Card, CardBody, CardHeader, Badge } from "reactstrap"
 
-import Radio from '../../Common/Radio';
-import RangeSlider from '../../Common/RangeSlider';
+import Radio from "../../Common/Radio"
+import RangeSlider from "../../Common/RangeSlider"
 
-const ProductFilter = props => {
-  const { totalProducts, pageNumber, filterProducts } = props;
-
+const ProductFilter = (props) => {
+  const { totalProducts, pageNumber, filterProducts } = props
+  console.log(totalProducts)
   return (
-    <div className='product-filter'>
-      <Card style={{ background: 'greenyellow' }}>
-        <CardHeader tag='h3'>
-          Showing:{' '}
-          <Badge color='dark' style={{ whiteSpace: 'break-spaces' }}>{`${
+    <div className="product-filter">
+      <Card style={{ background: "greenyellow" }}>
+        <CardHeader tag="h3">
+          Showing:{" "}
+          <Badge color="dark" style={{ whiteSpace: "break-spaces" }}>{`${
             totalProducts < 8 ? 0 : 8 * pageNumber - 8
           } – ${
             totalProducts < 8 ? totalProducts : 8 * pageNumber
@@ -26,39 +26,39 @@ const ProductFilter = props => {
         </CardHeader>
       </Card>
       <Card>
-        <CardHeader tag='h3'>Sort By:</CardHeader>
-        <CardBody className='radio'>
+        <CardHeader tag="h3">Sort By:</CardHeader>
+        <CardBody className="radio">
           <Radio
             handleChangeSubmit={(n, v) => {
-              filterProducts(n, v);
+              filterProducts(n, v)
             }}
           />
         </CardBody>
       </Card>
       <Card>
-        <CardHeader tag='h3'>Price Range:</CardHeader>
+        <CardHeader tag="h3">Price Range:</CardHeader>
         <CardBody>
           <RangeSlider
-            name={'Range'}
+            name={"Range"}
             handlePriceChangeSubmit={(n, v) => {
-              filterProducts(n, v);
+              filterProducts(n, v)
             }}
           />
         </CardBody>
       </Card>
       <Card>
-        <CardHeader tag='h3'>Customer Rating:</CardHeader>
+        <CardHeader tag="h3">Customer Rating:</CardHeader>
         <CardBody>
           <RangeSlider
-            name={'Slider'}
+            name={"Slider"}
             handleRatingChangeSubmit={(n, v) => {
-              filterProducts(n, v);
+              filterProducts(n, v)
             }}
           />
         </CardBody>
       </Card>
     </div>
-  );
-};
+  )
+}
 
-export default ProductFilter;
+export default ProductFilter

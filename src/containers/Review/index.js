@@ -4,36 +4,31 @@
  *
  */
 
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react"
+import { connect } from "react-redux"
 
-import actions from '../../actions';
+import actions from "../../actions"
 
-import SubPage from '../../components/Manager/SubPage';
-import LoadingIndicator from '../../components/Common/LoadingIndicator';
-import NotFound from '../../components/Common/NotFound';
-import ReviewList from '../../components/Manager/ReviewList';
+import SubPage from "../../components/Manager/SubPage"
+import LoadingIndicator from "../../components/Common/LoadingIndicator"
+import NotFound from "../../components/Common/NotFound"
+import ReviewList from "../../components/Manager/ReviewList"
 
 class Review extends React.PureComponent {
   componentDidMount() {
-    this.props.fetchReviews();
+    this.props.fetchReviews()
   }
 
   render() {
-    const {
-      reviews,
-      isLoading,
-      approveReview,
-      rejectReview,
-      deleteReview
-    } = this.props;
-
+    const { reviews, isLoading, approveReview, rejectReview, deleteReview } =
+      this.props
+    console.log(reviews)
     return (
-      <div className='review-dashboard'>
-        <SubPage title={'Reviews'} isMenuOpen={null}>
+      <div className="review-dashboard">
+        <SubPage title={"Reviews"} isMenuOpen={null}>
           {isLoading ? (
             <LoadingIndicator inline />
-          ) : reviews.length > 0 ? (
+          ) : reviews && reviews.length > 0 ? (
             <ReviewList
               reviews={reviews}
               approveReview={approveReview}
@@ -41,19 +36,19 @@ class Review extends React.PureComponent {
               deleteReview={deleteReview}
             />
           ) : (
-            <NotFound message='no reviews found.' />
+            <NotFound message="no reviews found." />
           )}
         </SubPage>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     reviews: state.review.reviews,
-    isLoading: state.review.isLoading
-  };
-};
+    isLoading: state.review.isLoading,
+  }
+}
 
-export default connect(mapStateToProps, actions)(Review);
+export default connect(mapStateToProps, actions)(Review)

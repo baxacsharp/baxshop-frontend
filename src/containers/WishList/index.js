@@ -21,7 +21,7 @@ class Wishlist extends React.PureComponent {
   }
 
   render() {
-    const { wishlist, isLoading, updateWishlist } = this.props
+    const { wishlist, isLoading, deleteWishlist } = this.props
 
     return (
       <div className="wishlist-dashboard">
@@ -29,7 +29,7 @@ class Wishlist extends React.PureComponent {
           {isLoading ? (
             <LoadingIndicator inline />
           ) : wishlist && wishlist.length > 0 ? (
-            <WishList wishlist={wishlist} updateWishlist={updateWishlist} />
+            <WishList wishlist={wishlist} deleteWishlist={deleteWishlist} />
           ) : (
             <NotFound message="you have no wishlist yet!" />
           )}

@@ -4,22 +4,22 @@
  *
  */
 
-import React from 'react';
+import React from "react"
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
 
-import AddToWishList from '../AddToWishList';
+import AddToWishList from "../AddToWishList"
 
-const ProductList = props => {
-  const { products, updateWishlist, authenticated } = props;
-
+const ProductList = (props) => {
+  const { products, updateWishlist, authenticated } = props
+  console.log(products)
   return (
-    <div className='product-list'>
+    <div className="product-list">
       {products.map((product, index) => (
-        <div key={index} className='mb-3 mb-md-0'>
-          <div className='product-container'>
-            <div className='item-box'>
-              <div className='add-wishlist-box'>
+        <div key={index} className="mb-3 mb-md-0">
+          <div className="product-container">
+            <div className="item-box">
+              <div className="add-wishlist-box">
                 <AddToWishList
                   product={product}
                   updateWishlist={updateWishlist}
@@ -27,43 +27,43 @@ const ProductList = props => {
                 />
               </div>
 
-              <div className='item-link'>
+              <div className="item-link">
                 <Link to={`/product/${product.slug}`}>
-                  <div className='item-image-container'>
-                    <div className='item-image-box'>
+                  <div className="item-image-container">
+                    <div className="item-image-box">
                       <img
-                        className='item-image'
+                        className="item-image"
                         src={`${
-                          product.imageUrl
-                            ? product.imageUrl
-                            : '/images/placeholder-image.png'
+                          product.image
+                            ? product.image
+                            : "/images/placeholder-image.png"
                         }`}
                       />
                     </div>
                   </div>
-                  <div className='item-body'>
-                    <div className='item-details p-3'>
-                      <h1 className='item-name'>{product.name}</h1>
+                  <div className="item-body">
+                    <div className="item-details p-3">
+                      <h1 className="item-name">{product.name}</h1>
                       {product.brand && (
-                        <p className='by'>
+                        <p className="by">
                           By <span>{product.brand.name}</span>
                         </p>
                       )}
-                      <p className='item-desc mb-0'>{product.description}</p>
+                      <p className="item-desc mb-0">{product.description}</p>
                     </div>
                   </div>
-                  <div className='d-flex flex-row justify-content-between align-items-center px-3 mb-2 item-footer'>
-                    <p className='price mb-0'>${product.price}</p>
+                  <div className="d-flex flex-row justify-content-between align-items-center px-3 mb-2 item-footer">
+                    <p className="price mb-0">${product.price}</p>
                     {product.totalReviews && (
-                      <p className='mb-0'>
-                        <span className='fs-16 fw-1 mr-1'>
+                      <p className="mb-0">
+                        <span className="fs-16 fw-1 mr-1">
                           {parseFloat(product?.averageRating).toFixed(1)}
                         </span>
                         <span
                           className={`fa fa-star ${
-                            product.totalReviews !== 0 ? 'checked' : ''
+                            product.totalReviews !== 0 ? "checked" : ""
                           }`}
-                          style={{ color: '#ffb302' }}
+                          style={{ color: "#ffb302" }}
                         ></span>
                       </p>
                     )}
@@ -75,7 +75,7 @@ const ProductList = props => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList

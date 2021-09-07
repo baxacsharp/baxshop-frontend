@@ -37,7 +37,7 @@ export const fetchReviews = () => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/review`)
 
-      dispatch({ type: FETCH_REVIEWS, payload: response.data.reviews })
+      dispatch({ type: FETCH_REVIEWS, payload: response.data })
     } catch (error) {
       handleError(error, dispatch)
     } finally {
@@ -77,7 +77,7 @@ export const deleteReview = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.delete(endpoint + `/review//${id}`)
+      const response = await axios.delete(endpoint + `/review/${id}`)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,
@@ -104,14 +104,14 @@ export const fetchProductReviews = (slug) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/review/${slug}`)
-
+      console.log(response)
       const { ratingSummary, totalRatings, totalReviews, totalSummary } =
-        getProductReviewsSummary(response.data.reviews)
+        getProductReviewsSummary(response.data)
 
       dispatch({
         type: FETCH_PRODUCT_REVIEWS,
         payload: {
-          reviews: response.data.reviews,
+          reviews: response.data,
           reviewsSummary: {
             ratingSummary,
             totalRatings,
@@ -137,7 +137,7 @@ export const addProductReview = () => {
       }
 
       const review = getState().review.reviewFormData
-      const product = getState().product.storeProduct
+      const product = getState().product.storeProduct.product
 
       const newReview = {
         product: product._id,
@@ -159,7 +159,7 @@ export const addProductReview = () => {
         return dispatch({ type: SET_REVIEW_FORM_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/review/`, newReview)
+      const response = await axios.post(endpoint + `/review`, newReview)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

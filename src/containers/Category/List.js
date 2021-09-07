@@ -32,7 +32,7 @@ class List extends React.PureComponent {
         >
           {isLoading ? (
             <LoadingIndicator inline />
-          ) : categories.length > 0 ? (
+          ) : categories && categories.length > 0 ? (
             <CategoryList categories={categories} />
           ) : (
             <NotFound message="no categories found." />
@@ -45,7 +45,7 @@ class List extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.category.category,
+    categories: state.category.categories,
     isLoading: state.category.isLoading,
     user: state.account.user,
   }

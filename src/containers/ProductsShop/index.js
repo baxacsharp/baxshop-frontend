@@ -4,27 +4,27 @@
  *
  */
 
-import React from 'react';
+import React from "react"
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux"
 
-import actions from '../../actions';
+import actions from "../../actions"
 
-import ProductList from '../../components/Store/ProductList';
-import NotFound from '../../components/Common/NotFound';
-import LoadingIndicator from '../../components/Common/LoadingIndicator';
+import ProductList from "../../components/Store/ProductList"
+import NotFound from "../../components/Common/NotFound"
+import LoadingIndicator from "../../components/Common/LoadingIndicator"
 
 class ProductsShop extends React.PureComponent {
   componentDidMount() {
-    const slug = this.props.match.params.slug;
-    this.props.fetchStoreProducts(slug);
+    const slug = this.props.match.params.slug
+    this.props.fetchStoreProducts(slug)
   }
 
   render() {
-    const { products, isLoading, authenticated, updateWishlist } = this.props;
+    const { products, isLoading, authenticated, updateWishlist } = this.props
 
     return (
-      <div className='products-shop'>
+      <div className="products-shop">
         {isLoading ? (
           <LoadingIndicator />
         ) : products && products.length > 0 ? (
@@ -34,19 +34,19 @@ class ProductsShop extends React.PureComponent {
             updateWishlist={updateWishlist}
           />
         ) : (
-          <NotFound message='no products found.' />
+          <NotFound message="no products found." />
         )}
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    products: state.product.storeProducts,
+    products: state.product.storeProducts.products,
     isLoading: state.product.isLoading,
-    authenticated: state.authentication.authenticated
-  };
-};
+    authenticated: state.authentication.authenticated,
+  }
+}
 
-export default connect(mapStateToProps, actions)(ProductsShop);
+export default connect(mapStateToProps, actions)(ProductsShop)

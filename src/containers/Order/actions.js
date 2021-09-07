@@ -41,11 +41,11 @@ export const fetchOrders = () => {
       dispatch(setOrderLoading(true))
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/order`)
-
-      if (response.data.orders) {
+      console.log(response)
+      if (response.data) {
         dispatch({
           type: FETCH_ORDERS,
-          payload: response.data.orders,
+          payload: response.data,
         })
       }
     } catch (error) {
@@ -95,10 +95,10 @@ export const fetchOrder = (id, withLoading = true) => {
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/order/${id}`)
-
+      console.log(response)
       dispatch({
         type: FETCH_ORDER,
-        payload: response.data.order,
+        payload: response.data,
       })
     } catch (error) {
       handleError(error, dispatch)
@@ -137,8 +137,8 @@ export const updateOrderItemStatus = (itemId, status) => {
           status,
         }
       )
-
-      if (response.data.orderCancelled) {
+      console.log(response)
+      if (response.data) {
         dispatch(push(`/dashboard/orders`))
       } else {
         dispatch(updateOrderStatus({ itemId, status }))

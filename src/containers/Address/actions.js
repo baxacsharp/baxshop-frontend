@@ -124,7 +124,7 @@ export const addAddress = () => {
       }
 
       const response = await axios.post(endpoint + "/address", address)
-
+      console.log(response)
       // const successfulOptions = {
       //   title: `${response.data.message}`,
       //   position: 'tr',

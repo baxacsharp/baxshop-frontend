@@ -182,8 +182,8 @@ export const fetchStoreProduct = (slug) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/products/item/${slug}`)
-
-      const inventory = response.data.quantity
+      console.log(response)
+      const inventory = response.data.product.quantity
       const product = { ...response.data, inventory }
 
       dispatch({
@@ -287,7 +287,7 @@ export const addProduct = () => {
         description: product.description,
         price: product.price,
         quantity: product.quantity,
-        image: product.image,
+        imageUrl: product.imageUrl,
         isActive: product.isActive,
         taxable: product.taxable.value,
         brand:
@@ -315,7 +315,7 @@ export const addProduct = () => {
         return dispatch({ type: SET_PRODUCT_FORM_ERRORS, payload: errors })
       }
       const formData = new FormData()
-      if (newProduct.image) {
+      if (newProduct.imageUrl) {
         for (var key in newProduct) {
           if (newProduct.hasOwnProperty(key)) {
             formData.append(key, newProduct[key])
