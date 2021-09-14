@@ -109,10 +109,10 @@ export const fetchProducts = () => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch({ type: SET_PRODUCTS_LOADING, payload: true })
       const response = await axios.get(endpoint + `/products`)
-
+      // console.log(response)
       dispatch({
         type: FETCH_PRODUCTS,
-        payload: response.data,
+        payload: response.data.products,
       })
     } catch (error) {
       handleError(error, dispatch)
@@ -156,13 +156,15 @@ export const fetchProduct = (id) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/products/${id}`)
-
-      const inventory = response.data.quantity
-      if (response.data.brand) {
-        response.data.brand = formatSelectOptions([response.data.brand])[0]
+      // console.log(response)
+      const inventory = response.data.product.quantity
+      if (response.data.product.brand) {
+        response.data.product.brand = formatSelectOptions([
+          response.data.product.brand,
+        ])[0]
       }
 
-      const product = { ...response.data, inventory }
+      const product = { ...response.data.product, inventory }
 
       dispatch({
         type: FETCH_PRODUCT,
@@ -182,7 +184,7 @@ export const fetchStoreProduct = (slug) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/products/item/${slug}`)
-      console.log(response)
+      // console.log(response)
       const inventory = response.data.product.quantity
       const product = { ...response.data, inventory }
 
@@ -229,7 +231,7 @@ export const fetchCategoryProducts = (slug) => {
       const response = await axios.get(
         endpoint + `/products/list/category/${slug}`
       )
-      console.log(response)
+      // console.log(response)
       dispatch({
         type: FETCH_PRODUCTS,
         payload: response.data.products,
@@ -248,7 +250,7 @@ export const fetchProductsSelect = () => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/products/list/select`)
       console.log(response)
-      const formattedProducts = formatSelectOptions(response.data)
+      const formattedProducts = formatSelectOptions(response.data.products)
 
       dispatch({
         type: FETCH_PRODUCTS_SELECT,
@@ -272,13 +274,11 @@ export const addProduct = () => {
         price: "required|numeric",
         taxable: "required",
         brand: "required",
-        image: "required",
       }
 
       const product = getState().product.productFormData
       const user = getState().account.user
       const brands = getState().brand.brandsSelect
-
       const brand = unformatSelectOptions([product.brand])
 
       const newProduct = {
@@ -308,25 +308,22 @@ export const addProduct = () => {
         "required.price": "Price is required.",
         "required.taxable": "Taxable is required.",
         "required.brand": "Brand is required.",
-        "required.image": "Please upload files with jpg, jpeg, png format.",
       })
 
       if (!isValid) {
         return dispatch({ type: SET_PRODUCT_FORM_ERRORS, payload: errors })
       }
-      const formData = new FormData()
-      if (newProduct.imageUrl) {
-        for (var key in newProduct) {
-          if (newProduct.hasOwnProperty(key)) {
-            formData.append(key, newProduct[key])
-          }
-        }
-      }
+
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/products/add`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      console.log(response)
+      const response = await axios.post(endpoint + `/products/add`, newProduct)
+      // console.log(response)
+      let formData = new FormData()
+      formData.append("image", product.image)
+      await axios.post(
+        endpoint + `/products/${response.data.product._id}/image`,
+        formData
+      )
+
       // const successfulOptions = {
       //   title: `${response.data.message}`,
       //   position: 'tr',
@@ -404,7 +401,7 @@ export const updateProduct = () => {
 
       if (response.data) {
         // dispatch(success(successfulOptions));
-        //dispatch(goBack());
+        dispatch(goBack())
       }
     } catch (error) {
       handleError(error, dispatch)

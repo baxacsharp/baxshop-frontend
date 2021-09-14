@@ -1,11 +1,5 @@
-/**
- *
- * Navigation
- *
- */
-
 import React from "react"
-
+import styled from "styled-components"
 import { connect } from "react-redux"
 import { Link, NavLink as ActiveLink, withRouter } from "react-router-dom"
 import Autosuggest from "react-autosuggest"
@@ -25,9 +19,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap"
-
 import actions from "../../actions"
-
 import Button from "../../components/Common/Button"
 import CartIcon from "../../components/Common/CartIcon"
 import { BarsIcon } from "../../components/Common/Icon"
@@ -66,7 +58,11 @@ class Navigation extends React.PureComponent {
               ? "react-autosuggest__suggestion-match"
               : null
             return (
-              <span className={className} key={index}>
+              <span
+                style={{ backgroundColor: "#d6c3c3" }}
+                className={className}
+                key={index}
+              >
                 {part.text}
               </span>
             )
@@ -134,30 +130,11 @@ class Navigation extends React.PureComponent {
     }
 
     return (
-      <header className="header fixed-mobile-header">
-        <div className="header-info">
-          <Container>
-            <Row>
-              <Col md="4" className="text-center d-none d-md-block">
-                <i className="fa fa-truck" />
-                <span>Free Shipping</span>
-              </Col>
-              <Col md="4" className="text-center d-none d-md-block">
-                <i className="fa fa-credit-card" />
-                <span>Payment Methods</span>
-              </Col>
-              <Col md="4" className="text-center d-none d-md-block">
-                <i className="fa fa-phone" />
-                <span>Call us 951-999-9999</span>
-              </Col>
-              <Col xs="12" className="text-center d-block d-md-none">
-                <i className="fa fa-phone" />
-                <span> Need advice? Call us 951-999-9999</span>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        <Container>
+      <header
+        style={{ backgroundColor: "#4A4444" }}
+        className="header fixed-mobile-header"
+      >
+        <StyledContainer>
           <Row className="align-items-center top-header">
             <Col
               xs={{ size: 12, order: 1 }}
@@ -175,18 +152,28 @@ class Navigation extends React.PureComponent {
                   onClick={() => this.toggleMenu()}
                 />
                 <Link to="/">
-                  <h1 className="logo">MERN Store</h1>
+                  <Row>
+                    <Col style={{ marginLeft: "10px" }} xs={5}>
+                      <img
+                        style={{ width: "90px" }}
+                        src="https://cdn.awsli.com.br/1889/1889204/logo/437a0ea9a1.jpg"
+                      />
+                    </Col>
+                    <Col xs={6}>
+                      <h1 className="logo">BaxShop</h1>
+                    </Col>
+                  </Row>
                 </Link>
               </div>
             </Col>
-            <Col
+            <StyledCol
               xs={{ size: 12, order: 4 }}
               sm={{ size: 12, order: 4 }}
               md={{ size: 12, order: 4 }}
               lg={{ size: 5, order: 2 }}
-              className="pt-2 pt-lg-0"
+              className="pt-2 pt-lg-0 search"
             >
-              <Autosuggest
+              <StyledSearch
                 suggestions={suggestions}
                 onSuggestionsFetchRequested={onSuggestionsFetchRequested}
                 onSuggestionsClearRequested={onSuggestionsClearRequested}
@@ -197,7 +184,7 @@ class Navigation extends React.PureComponent {
                   history.push(`/product/${item.suggestion.slug}`)
                 }}
               />
-            </Col>
+            </StyledCol>
             <Col
               xs={{ size: 12, order: 2 }}
               sm={{ size: 12, order: 2 }}
@@ -223,7 +210,7 @@ class Navigation extends React.PureComponent {
               lg={{ size: 4, order: 3 }}
               // className='px-0'
             >
-              <Navbar color="light" light expand="md" className="mt-1 mt-md-0">
+              <StyledNavbar expand="md" className="mt-1 mt-md-0">
                 <CartIcon
                   className="d-none d-md-block"
                   cartItems={cartItems}
@@ -240,7 +227,7 @@ class Navigation extends React.PureComponent {
                       Brands
                       <span className="fa fa-chevron-down dropdown-caret"></span>
                     </DropdownToggle>
-                    <DropdownMenu right className="nav-brand-dropdown">
+                    <StyledDropdown left className="nav-brand-dropdown">
                       <div className="mini-brand">
                         {brands && brands.length > 0 && (
                           <MiniBrand
@@ -249,7 +236,7 @@ class Navigation extends React.PureComponent {
                           />
                         )}
                       </div>
-                    </DropdownMenu>
+                    </StyledDropdown>
                   </Dropdown>
                   <NavItem>
                     <NavLink
@@ -292,10 +279,10 @@ class Navigation extends React.PureComponent {
                     </UncontrolledDropdown>
                   )}
                 </Nav>
-              </Navbar>
+              </StyledNavbar>
             </Col>
           </Row>
-        </Container>
+        </StyledContainer>
 
         {/* hidden cart drawer */}
         <div
@@ -348,3 +335,21 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, actions)(withRouter(Navigation))
+const StyledContainer = styled(Container)`
+  & h1 {
+    color: whitesmoke !important;
+  }
+`
+const StyledCol = styled(Col)`
+  background-color: #d6c3c3;
+  border: 2px solid #707070;
+`
+const StyledSearch = styled(Autosuggest)`
+  background-color: #d6c3c3;
+`
+const StyledNavbar = styled(Navbar)`
+  background-color: #4a4444 !important;
+`
+const StyledDropdown = styled(DropdownMenu)`
+  margin-right: 100px !important;
+`

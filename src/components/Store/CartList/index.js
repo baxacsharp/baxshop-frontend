@@ -13,7 +13,7 @@ import Button from "../../Common/Button"
 
 const CartList = (props) => {
   const { cartItems, handleRemoveFromCart } = props
-  console.log(cartItems)
+  // console.log(cartItems)
   const handleProductClick = () => {
     props.toggleCart()
   }

@@ -1,14 +1,13 @@
 // start input text styles
-input[type='text'],
-input[type='number'],
-input[type='password'],
-input[type='file'],
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="file"],
 textarea {
   width: 100%;
   padding: 8px 10px;
   border: $border-default;
   font-size: $font-size-medium;
-  color: $font-custom-color;
   border-radius: $border-radius-default;
   -webkit-transition: $layout-transition-speed;
   transition: $layout-transition-speed;
@@ -18,7 +17,7 @@ textarea {
   &:focus {
     outline: none;
     color: $font-focus-color;
-    border-color: $border-focus-color !important;
+    border-color: $border-focus-color;
     box-shadow: none;
     -webkit-transition: $layout-transition-speed;
     transition: $layout-transition-speed;
@@ -26,13 +25,13 @@ textarea {
 
   &:disabled {
     background-color: $disabled-bg;
-    border: none !important;
+    border: none;
     cursor: not-allowed;
   }
 }
 
 body.user-is-tabbing textarea {
-  box-shadow: none !important;
+  box-shadow: none;
 }
 // end input text styles
 
@@ -41,7 +40,6 @@ body.user-is-tabbing textarea {
   .invalid-message {
     visibility: hidden;
     opacity: 0;
-    color: $validation-color;
     height: 0;
     @include flex();
     -webkit-transition: $layout-transition-speed;
@@ -56,7 +54,7 @@ body.user-is-tabbing textarea {
       transition: $layout-transition-speed;
 
       &:focus {
-        border-color: $validation-color !important;
+        border-color: $validation-color;
       }
     }
 
@@ -74,16 +72,15 @@ body.user-is-tabbing textarea {
 .input-box {
   margin: 10px 0px;
 
-  input[type='text'],
-  input[type='number'],
-  input[type='password'],
-  input[type='file'] {
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  input[type="file"] {
     height: 45px;
   }
 
   label {
     margin-bottom: 5px;
-    color: $font-custom-color;
     font-size: $font-size-medium;
   }
 }
@@ -100,9 +97,9 @@ body.user-is-tabbing textarea {
   }
 
   .input-btn {
-    border-left: none !important;
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
 
@@ -111,7 +108,6 @@ body.user-is-tabbing textarea {
 
   label {
     margin-bottom: 5px;
-    color: $font-custom-color;
     font-size: $font-size-medium;
   }
 

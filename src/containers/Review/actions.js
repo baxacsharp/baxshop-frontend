@@ -104,7 +104,7 @@ export const fetchProductReviews = (slug) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(endpoint + `/review/${slug}`)
-      console.log(response)
+      // console.log(response)
       const { ratingSummary, totalRatings, totalReviews, totalSummary } =
         getProductReviewsSummary(response.data)
 

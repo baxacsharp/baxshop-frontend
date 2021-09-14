@@ -143,7 +143,7 @@ export const addBrand = () => {
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.post(endpoint + `/brands`, brand)
-      console.log(response)
+      // console.log(response)
       // const successfulOptio ns = {
       //   title: `${response.data.message}`,
       //   position: 'tr',
@@ -246,7 +246,7 @@ export const deleteBrand = (id) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.delete(endpoint + `/brands/${id}`)
-      console.log(response)
+      // console.log(response)
       // const successfulOptions = {
       //   title: `${response.data.message}`,
       //   position: 'tr',

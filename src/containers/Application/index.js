@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-
+import styled from "styled-components"
 import { connect } from "react-redux"
 import { Switch, Route } from "react-router-dom"
 import { Container } from "reactstrap"
@@ -64,7 +64,7 @@ class Application extends React.PureComponent {
       <div className="application">
         {/* <Notification /> */}
         <Navigation />
-        <main className="main">
+        <StyledHeader className="main">
           <Container>
             <div className="wrapper">
               <Switch>
@@ -97,7 +97,7 @@ class Application extends React.PureComponent {
               </Switch>
             </div>
           </Container>
-        </main>
+        </StyledHeader>
         <Footer />
       </div>
     )
@@ -112,3 +112,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, actions)(Application)
+const StyledHeader = styled.main`
+  background-color: #3d2e2e;
+`

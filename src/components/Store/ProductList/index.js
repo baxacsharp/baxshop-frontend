@@ -32,10 +32,12 @@ const ProductList = (props) => {
                   <div className="item-image-container">
                     <div className="item-image-box">
                       <img
+                        height={"100%"}
+                        width={"100%"}
                         className="item-image"
                         src={`${
-                          product.image
-                            ? product.image
+                          product.imageUrl
+                            ? product.imageUrl
                             : "/images/placeholder-image.png"
                         }`}
                       />

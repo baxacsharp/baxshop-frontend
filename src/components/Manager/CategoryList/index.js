@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-
+import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 const CategoryList = (props) => {
@@ -21,9 +21,11 @@ const CategoryList = (props) => {
             className="d-block mb-3 p-4 category-box"
           >
             <div className="d-flex align-items-center justify-content-between mb-2">
-              <h4 className="mb-0">{category.name}</h4>
+              <StyledText className="mb-0">{category.name}</StyledText>
             </div>
-            <p className="mb-2 category-desc">{category.description}</p>
+            <StyledPTag className="mb-2 category-desc">
+              {category.description}
+            </StyledPTag>
           </Link>
         ))}
     </div>
@@ -31,3 +33,9 @@ const CategoryList = (props) => {
 }
 
 export default CategoryList
+const StyledText = styled.h4`
+  color: powderblue !important;
+`
+const StyledPTag = styled.p`
+  color: wheat !important;
+`

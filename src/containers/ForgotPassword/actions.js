@@ -43,18 +43,11 @@ export const forgotPassowrd = () => {
         })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post("/api/auth/forgot", user)
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const response = await axios.post(endpoint + "/user/recover", user)
 
       if (response.data) {
         dispatch(push("/login"))
       }
-      // dispatch(success(successfulOptions));
-
       dispatch({ type: FORGOT_PASSWORD_RESET })
     } catch (error) {
       const title = `Please try again!`

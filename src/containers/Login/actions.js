@@ -1,13 +1,5 @@
-/*
- *
- * Login actions
- *
- */
-
-// import { success } from 'react-notification-system-redux';
 import axios from "axios"
 import { push } from "connected-react-router"
-
 import {
   LOGIN_CHANGE,
   LOGIN_RESET,
@@ -18,7 +10,6 @@ import {
 import { setAuth, clearAuth } from "../Authentication/actions"
 import setToken from "../../utils/token"
 import handleError from "../../utils/error"
-import { clearCart } from "../Cart/actions"
 import { clearAccount } from "../Account/actions"
 import { allFieldsValidation } from "../../utils/validation"
 
@@ -61,19 +52,9 @@ export const login = () => {
 
       const firstName = response.data.user.firstName
 
-      // const successfulOptions = {
-      //   title: `Hey${firstName ? ` ${firstName}` : ''}, Welcome Back!`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
-
       localStorage.setItem("token", response.data.accessToken)
-      console.log(response.data.accessToken)
       setToken(response.data.accessToken)
-
       dispatch(setAuth())
-      // dispatch(success(successfulOptions));
-
       dispatch({ type: LOGIN_RESET })
     } catch (error) {
       const title = `Please try to login again!`
@@ -86,20 +67,11 @@ export const login = () => {
 }
 
 export const signOut = () => {
-  return (dispatch, getState) => {
-    // const successfulOptions = {
-    //   title: `You have signed out!`,
-    //   position: 'tr',
-    //   autoDismiss: 1
-    // };
-
+  return (dispatch) => {
     dispatch(clearAuth())
     dispatch(clearAccount())
     dispatch(push("/login"))
 
     localStorage.removeItem("token")
-
-    // dispatch(success(successfulOptions));
-    // dispatch(clearCart());
   }
 }

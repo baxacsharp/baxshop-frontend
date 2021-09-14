@@ -5,32 +5,31 @@
  */
 
 import React from "react"
-
+import styled from "styled-components"
 import { formatDate } from "../../../helpers/date"
 import UserRole from "../UserRole"
 
 const UserList = (props) => {
   const { users } = props
-
+  console.log(users)
   return (
     <div className="u-list">
-      <p className="fw-1">{users.length} results</p>
+      <StyledPTag className="fw-1">{users.length} results</StyledPTag>
       {users.response.map((user, index) => (
         <div key={index} className="mt-3 px-4 py-3 user-box">
-          <label className="text-black">Name</label>
-          <p className="fw-2">
+          <StyledLabel className="text-black">Name</StyledLabel>
+          <StyledPTag className="fw-2">
             {user?.firstName ? `${user?.firstName} ${user?.lastName}` : "N/A"}
-          </p>
-          <label className="text-black">Email</label>
-          <p>{user?.email}</p>
-          <label className="text-black">Provider</label>
-          <p>{user?.provider}</p>
-          <label className="text-black">Account Created</label>
-          <p>{formatDate(user?.created)}</p>
-          <label className="text-black">Role</label>
-          <p className="mb-0">
+          </StyledPTag>
+          <StyledLabel className="text-black">Email</StyledLabel>
+          <StyledPTag>{user?.email}</StyledPTag>
+
+          <StyledLabel className="text-black">Account Created</StyledLabel>
+          <StyledPTag>{formatDate(user?.createdAt)}</StyledPTag>
+          <StyledLabel className="text-black">Role</StyledLabel>
+          <StyledPTag className="mb-0">
             <UserRole user={user} className="d-inline-block mt-2" />
-          </p>
+          </StyledPTag>
         </div>
       ))}
     </div>
@@ -38,3 +37,12 @@ const UserList = (props) => {
 }
 
 export default UserList
+const StyledText = styled.h4`
+  color: powderblue !important;
+`
+const StyledPTag = styled.p`
+  color: wheat !important;
+`
+const StyledLabel = styled.label`
+  color: greenyellow !important;
+`

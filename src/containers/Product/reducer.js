@@ -39,7 +39,7 @@ const initialState = {
     description: "",
     quantity: 1,
     price: 1,
-    imageUrl: "",
+    image: "",
     isActive: true,
     taxable: { value: 0, label: "No" },
     brand: {
@@ -116,6 +116,7 @@ const productReducer = (state = initialState, action) => {
         ],
       }
     case PRODUCT_CHANGE:
+      // console.log(action.payload)
       return {
         ...state,
         productFormData: {

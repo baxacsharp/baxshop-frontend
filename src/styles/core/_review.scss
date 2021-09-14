@@ -67,6 +67,7 @@
 
   .review-list {
     .review-box {
+      background-color: greenyellow !important;
       height: 100%;
       border-radius: $border-radius-default;
       box-shadow: $secondary-box-shadow;
@@ -93,6 +94,7 @@
 .review-dashboard {
   .r-list {
     .review-box {
+      background-color: grey;
       border-radius: $border-radius-default;
       box-shadow: $secondary-box-shadow;
 

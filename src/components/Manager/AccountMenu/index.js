@@ -4,34 +4,34 @@
  *
  */
 
-import React from 'react';
+import React from "react"
 
-import { NavLink } from 'react-router-dom';
-import { Collapse, Navbar } from 'reactstrap';
+import { NavLink } from "react-router-dom"
+import { Collapse, Navbar } from "reactstrap"
+import styled from "styled-components"
+import Button from "../../Common/Button"
 
-import Button from '../../Common/Button';
-
-const AccountMenu = props => {
-  const { isMenuOpen, links, toggleMenu } = props;
+const AccountMenu = (props) => {
+  const { isMenuOpen, links, toggleMenu } = props
 
   return (
-    <div className='panel-sidebar'>
+    <div className="panel-sidebar">
       <Button
-        text='Dashboard Menu'
-        className={`${isMenuOpen ? 'menu-panel' : 'menu-panel collapse'}`}
-        ariaExpanded={isMenuOpen ? 'true' : 'false'}
+        text="Dashboard Menu"
+        className={`${isMenuOpen ? "menu-panel" : "menu-panel collapse"}`}
+        ariaExpanded={isMenuOpen ? "true" : "false"}
         // ariaLabel={isMenuOpen ? 'dashboard menu expanded' : 'dashboard menu collapse'}
         onClick={toggleMenu}
       />
-      <h3 className='panel-title'>Account</h3>
-      <Navbar color='light' light expand='md'>
+      <StyledText className="panel-title">Account</StyledText>
+      <Navbar color="light" light expand="md">
         <Collapse isOpen={isMenuOpen} navbar>
-          <ul className='panel-links'>
+          <ul className="panel-links">
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink
-                  to={'/dashboard' + link.to}
-                  activeClassName='active-link'
+                  to={"/dashboard" + link.to}
+                  activeClassName="active-link"
                   exact
                 >
                   {link.name}
@@ -42,7 +42,10 @@ const AccountMenu = props => {
         </Collapse>
       </Navbar>
     </div>
-  );
-};
+  )
+}
 
-export default AccountMenu;
+export default AccountMenu
+const StyledText = styled.h3`
+  color: sienna !important;
+`

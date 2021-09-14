@@ -7,7 +7,7 @@
 import React from "react"
 
 import { Row, Col } from "reactstrap"
-
+import styled from "styled-components"
 import Checkbox from "../../Common/Checkbox"
 import Input from "../../Common/Input"
 import Button from "../../Common/Button"
@@ -103,7 +103,7 @@ const AddAddress = (props) => {
         </Row>
         <hr />
         <div className="add-address-actions">
-          <Button type="submit" text="Add Address" />
+          <StyledButton type="submit" text="Add Address" />
         </div>
       </form>
     </div>
@@ -111,3 +111,7 @@ const AddAddress = (props) => {
 }
 
 export default AddAddress
+const StyledButton = styled(Button)`
+  background-color: olivedrab !important;
+  border-radius: 50px !important;
+`

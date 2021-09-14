@@ -4,13 +4,13 @@
  *
  */
 
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react"
+import { connect } from "react-redux"
+import styled from "styled-components"
+import actions from "../../actions"
 
-import actions from '../../actions';
-
-import SubPage from '../../components/Manager/SubPage';
-import ResetPasswordForm from '../../components/Common/ResetPasswordForm';
+import SubPage from "../../components/Manager/SubPage"
+import ResetPasswordForm from "../../components/Common/ResetPasswordForm"
 
 class AccountSecurity extends React.PureComponent {
   componentDidMount() {}
@@ -20,14 +20,14 @@ class AccountSecurity extends React.PureComponent {
       resetFormData,
       formErrors,
       resetPasswordChange,
-      resetAccountPassword
-    } = this.props;
+      resetAccountPassword,
+    } = this.props
 
     return (
-      <div className='account-security'>
-        <SubPage title={'Account Security'} isMenuOpen={null}>
-          <div className='reset-form'>
-            <h3>Reset Password</h3>
+      <div className="account-security">
+        <SubPage title={"Account Security"} isMenuOpen={null}>
+          <div className="reset-form">
+            <StyledH>Reset Password</StyledH>
             <ResetPasswordForm
               resetFormData={resetFormData}
               formErrors={formErrors}
@@ -37,16 +37,20 @@ class AccountSecurity extends React.PureComponent {
           </div>
         </SubPage>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.account.user,
     resetFormData: state.resetPassword.resetFormData,
-    formErrors: state.resetPassword.formErrors
-  };
-};
+    formErrors: state.resetPassword.formErrors,
+  }
+}
 
-export default connect(mapStateToProps, actions)(AccountSecurity);
+export default connect(mapStateToProps, actions)(AccountSecurity)
+
+const StyledH = styled.h3`
+  color: rosybrown !important;
+`

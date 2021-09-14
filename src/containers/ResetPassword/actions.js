@@ -1,11 +1,4 @@
-/*
- *
- * ResetPassword actions
- *
- */
-
 import { push } from "connected-react-router"
-// import { success } from 'react-notification-system-redux';
 import axios from "axios"
 
 import {
@@ -54,18 +47,11 @@ export const resetPassowrd = (token) => {
         })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(`/api/auth/reset/${token}`, user)
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const response = await axios.post(endpoint + `/user/reset/${token}`, user)
 
       if (response.data) {
         dispatch(push("/login"))
       }
-
-      // dispatch(success(successfulOptions));
       dispatch({ type: RESET_PASSWORD_RESET })
     } catch (error) {
       const title = `Please try to reset again!`
@@ -101,18 +87,10 @@ export const resetAccountPassword = () => {
         })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(`/api/auth/reset`, user)
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
-
+      const response = await axios.post(endpoint + `/user/recover`, user)
       if (response.data) {
         dispatch(signOut())
       }
-
-      // dispatch(success(successfulOptions));
       dispatch({ type: RESET_PASSWORD_RESET })
     } catch (error) {
       const title = `Please try to reset again!`

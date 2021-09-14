@@ -45,7 +45,7 @@ export const fetchOrders = () => {
       if (response.data) {
         dispatch({
           type: FETCH_ORDERS,
-          payload: response.data,
+          payload: response.data.orders,
         })
       }
     } catch (error) {
@@ -98,7 +98,7 @@ export const fetchOrder = (id, withLoading = true) => {
       console.log(response)
       dispatch({
         type: FETCH_ORDER,
-        payload: response.data,
+        payload: response.data.order,
       })
     } catch (error) {
       handleError(error, dispatch)
@@ -137,7 +137,7 @@ export const updateOrderItemStatus = (itemId, status) => {
           status,
         }
       )
-      console.log(response)
+      // console.log(response)
       if (response.data) {
         dispatch(push(`/dashboard/orders`))
       } else {
@@ -170,8 +170,8 @@ export const addOrder = () => {
           cartId,
           total,
         })
-
-        dispatch(push(`/order/success/${response.data.order._id}`))
+        // console.log(response)
+        dispatch(push(`/order/success/${response.data._id}`))
         dispatch(clearCart())
       }
     } catch (error) {

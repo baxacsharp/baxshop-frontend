@@ -32,7 +32,7 @@ class Shop extends React.PureComponent {
   render() {
     const { product, products, advancedFilters, filterProducts } = this.props
     const { totalProducts, pageNumber, pages } = advancedFilters
-    console.log(products)
+    // console.log(products)
     return (
       <div className="shop">
         <Row xs="12">

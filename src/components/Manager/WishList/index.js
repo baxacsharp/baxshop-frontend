@@ -7,7 +7,7 @@
 import React from "react"
 
 import { Link } from "react-router-dom"
-
+import styled from "styled-components"
 import { formatDate } from "../../../helpers/date"
 import Button from "../../Common/Button"
 import { XIcon } from "../../Common/Icon"
@@ -32,7 +32,7 @@ const WishList = (props) => {
       )
     }
   }
-
+  console.log(wishlist)
   return (
     <div className="w-list">
       {wishlist.map((item, index) => (
@@ -47,11 +47,15 @@ const WishList = (props) => {
           >
             {getProductImage(item)}
             <div className="d-flex flex-column justify-content-center px-3 text-truncate">
-              <h4 className="text-truncate">{item.product.name}</h4>
-              <p className="mb-2 price">${item.product.price}</p>
-              <label className="text-truncate">{`Wishlist Added on ${formatDate(
-                item.created
-              )}`}</label>
+              <StyledText className="text-truncate">
+                {item.product.name}
+              </StyledText>
+              <StyledPTag className="mb-2 price">
+                ${item.product.price}
+              </StyledPTag>
+              <StyledLabel className="text-truncate">{`Wishlist Added on ${formatDate(
+                item.createdAt
+              )}`}</StyledLabel>
             </div>
           </Link>
           <div className="remove-wishlist-box">
@@ -69,3 +73,15 @@ const WishList = (props) => {
 }
 
 export default WishList
+const StyledText = styled.h4`
+  color: powderblue !important;
+  :focus {
+    color: brown !important;
+  }
+`
+const StyledPTag = styled.p`
+  color: wheat !important;
+`
+const StyledLabel = styled.label`
+  color: greenyellow !important;
+`

@@ -28,9 +28,9 @@ class Cart extends React.PureComponent {
       placeOrder,
       authenticated,
     } = this.props
-    console.log(cartTotal)
+    // console.log(cartTotal)
     const calculateCartTotal = cartItems.quantity * cartItems.product?.price
-    console.log(calculateCartTotal)
+    // console.log(calculateCartTotal)
     return (
       <div className="cart">
         <div className="cart-header">

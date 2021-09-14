@@ -85,13 +85,13 @@ export const deleteWishlist = (id) => {
 
 // fetch wishlist api
 export const fetchWishlist = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch({ type: SET_WISHLIST_LOADING, payload: true })
 
       const response = await axios.get(endpoint + `/wishList`)
-      console.log(response)
+      // console.log(response)
       dispatch({ type: FETCH_WISHLIST, payload: response.data })
     } catch (error) {
       handleError(error, dispatch)

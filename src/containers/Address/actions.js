@@ -5,9 +5,8 @@
  */
 
 import { goBack } from "connected-react-router"
-// import { success } from 'react-notification-system-redux';
 import axios from "axios"
-
+import { push } from "connected-react-router"
 import {
   FETCH_ADDRESS,
   FETCH_ADDRESSES,
@@ -124,7 +123,7 @@ export const addAddress = () => {
       }
 
       const response = await axios.post(endpoint + "/address", address)
-      console.log(response)
+      // console.log(response)
       // const successfulOptions = {
       //   title: `${response.data.message}`,
       //   position: 'tr',
@@ -180,15 +179,9 @@ export const updateAddress = () => {
         newAddress
       )
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
-
       if (response.data) {
-        // dispatch(success(successfulOptions));
         dispatch(goBack())
+        // dispatch(goBack(null))
       }
     } catch (error) {
       handleError(error, dispatch)

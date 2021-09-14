@@ -4,37 +4,52 @@
  *
  */
 
-import React from 'react';
+import React from "react"
 
-import { Col } from 'reactstrap';
-
-const OrderSummary = props => {
-  const { order } = props;
+import { Col } from "reactstrap"
+import styled from "styled-components"
+const OrderSummary = (props) => {
+  const { order } = props
 
   return (
-    <Col className='order-summary pt-3'>
-      <h2>Order Summary</h2>
-      <div className='d-flex align-items-center summary-item'>
-        <p className='summary-label'>Subtotal</p>
-        <p className='summary-value ml-auto'>${order.total}</p>
+    <Col className="order-summary pt-3">
+      <StyledH>Order Summary</StyledH>
+      <div className="d-flex align-items-center summary-item">
+        <StyledPTag className="summary-label">Subtotal: </StyledPTag>
+        <StyledPTag className="summary-value ml-auto">
+          ${order.total}
+        </StyledPTag>
       </div>
-      <div className='d-flex align-items-center summary-item'>
-        <p className='summary-label'>Est. Sales Tax</p>
-        <p className='summary-value ml-auto'>${order.totalTax}</p>
+      <div className="d-flex align-items-center summary-item">
+        <StyledPTag className="summary-label">Est. Sales Tax</StyledPTag>
+        <StyledPTag className="summary-value ml-auto">
+          ${order.totalTax}
+        </StyledPTag>
       </div>
 
-      <div className='d-flex align-items-center summary-item'>
-        <p className='summary-label'>Shipping & Handling</p>
-        <p className='summary-value ml-auto'>$0</p>
+      <div className="d-flex align-items-center summary-item">
+        <StyledPTag className="summary-label">Shipping & Handling</StyledPTag>
+        <StyledPTag className="summary-value ml-auto">$0</StyledPTag>
       </div>
 
       <hr />
-      <div className='d-flex align-items-center summary-item'>
-        <p className='summary-label'>Total</p>
-        <p className='summary-value ml-auto'>${order.totalWithTax}</p>
+      <div className="d-flex align-items-center summary-item">
+        <StyledPTag className="summary-label">Total:</StyledPTag>
+        <StyledPTag className="summary-value ml-auto">
+          ${order.total}
+        </StyledPTag>
       </div>
     </Col>
-  );
-};
+  )
+}
 
-export default OrderSummary;
+export default OrderSummary
+const StyledText = styled.h4`
+  color: powderblue !important;
+`
+const StyledPTag = styled.p`
+  color: wheat !important;
+`
+const StyledH = styled.h2`
+  color: hotpink !important;
+`

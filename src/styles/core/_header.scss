@@ -6,7 +6,7 @@
   .fa,
   span {
     color: $white;
-    font-size: $font-size-medium !important;
+    font-size: $font-size-medium;
     font-weight: $font-weight-bold-one;
     margin: 0px 5px;
   }
@@ -72,7 +72,7 @@
   }
 
   .navbar {
-    background-color: $white !important;
+    background-color: $white;
     justify-content: flex-end;
     padding: 0;
 
@@ -144,7 +144,7 @@
 
     h1 {
       margin: 0px;
-      color: $font-custom-color !important;
+      color: $font-custom-color;
       @include media-breakpoint-up(md) {
         margin-left: 15px;
       }
@@ -190,6 +190,7 @@
 }
 
 .mini-brand-list {
+  margin-right: 200px;
   padding: 16px 20px;
   @include media-breakpoint-up(md) {
     padding: 20px 40px;
@@ -230,7 +231,7 @@
           width: 100%;
           height: 2px;
           background-color: $primary-bg;
-          content: '';
+          content: "";
           opacity: 0;
           -webkit-transition: opacity $layout-transition-speed,
             -webkit-transform $layout-transition-speed;

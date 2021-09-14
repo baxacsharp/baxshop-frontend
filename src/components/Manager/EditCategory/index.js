@@ -4,16 +4,16 @@
  *
  */
 
-import React from 'react';
+import React from "react"
 
-import { Row, Col } from 'reactstrap';
+import { Row, Col } from "reactstrap"
+import styled from "styled-components"
+import Input from "../../Common/Input"
+import Button from "../../Common/Button"
+import SelectOption from "../../Common/SelectOption"
+import Switch from "../../Common/Switch"
 
-import Input from '../../Common/Input';
-import Button from '../../Common/Button';
-import SelectOption from '../../Common/SelectOption';
-import Switch from '../../Common/Switch';
-
-const EditCategory = props => {
+const EditCategory = (props) => {
   const {
     products,
     category,
@@ -21,87 +21,91 @@ const EditCategory = props => {
     formErrors,
     updateCategory,
     deleteCategory,
-    activateCategory
-  } = props;
+    activateCategory,
+  } = props
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    updateCategory();
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    updateCategory()
+  }
 
   return (
-    <div className='edit-category'>
+    <div className="edit-category">
       <form onSubmit={handleSubmit} noValidate>
         <Row>
-          <Col xs='12'>
+          <Col xs="12">
             <Input
-              type={'text'}
-              error={formErrors['name']}
-              label={'Name'}
-              name={'name'}
-              placeholder={'Category Name'}
+              type={"text"}
+              error={formErrors["name"]}
+              label={"Name"}
+              name={"name"}
+              placeholder={"Category Name"}
               value={category.name}
               onInputChange={(name, value) => {
-                categoryChange(name, value);
+                categoryChange(name, value)
               }}
             />
           </Col>
-          <Col xs='12' md='12'>
+          <Col xs="12" md="12">
             <Input
-              type={'textarea'}
-              error={formErrors['description']}
-              label={'Description'}
-              name={'description'}
-              placeholder={'Category Description'}
+              type={"textarea"}
+              error={formErrors["description"]}
+              label={"Description"}
+              name={"description"}
+              placeholder={"Category Description"}
               value={category.description}
               onInputChange={(name, value) => {
-                categoryChange(name, value);
+                categoryChange(name, value)
               }}
             />
           </Col>
-          <Col xs='12' md='12'>
+          <Col xs="12" md="12">
             <SelectOption
-              error={formErrors['products']}
-              label={'Select Products'}
+              error={formErrors["products"]}
+              label={"Select Products"}
               multi={true}
               defaultValue={category.products}
               options={products}
-              handleSelectChange={value => {
-                categoryChange('products', value);
+              handleSelectChange={(value) => {
+                categoryChange("products", value)
               }}
             />
           </Col>
-          <Col xs='12' md='12' className='mt-3 mb-2'>
+          <Col xs="12" md="12" className="mt-3 mb-2">
             <Switch
               style={{ width: 100 }}
               tooltip={category.isActive}
               tooltipContent={`Disabling ${category.name} will also disable all ${category.name} products.`}
               id={`enable-category-${category._id}`}
-              name={'isActive'}
-              label={'Active?'}
+              name={"isActive"}
+              label={"Active?"}
               checked={category.isActive}
-              toggleCheckboxChange={value =>
+              toggleCheckboxChange={(value) =>
                 activateCategory(category._id, value)
               }
             />
           </Col>
         </Row>
         <hr />
-        <div className='d-flex flex-column flex-md-row'>
-          <Button
-            type='submit'
-            text='Save'
-            className='mb-3 mb-md-0 mr-0 mr-md-3'
+        <div className="d-flex flex-column flex-md-row">
+          <StyledButton
+            type="submit"
+            text="Save"
+            className="mb-3 mb-md-0 mr-0 mr-md-3"
           />
           <Button
-            variant='danger'
-            text='Delete'
+            variant="danger"
+            text="Delete"
             onClick={() => deleteCategory(category._id)}
           />
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default EditCategory;
+export default EditCategory
+const StyledButton = styled(Button)`
+  background-color: greenyellow !important;
+  margin-right: 40px;
+`

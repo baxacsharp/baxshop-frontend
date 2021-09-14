@@ -12,7 +12,7 @@ import RangeSlider from "../../Common/RangeSlider"
 
 const ProductFilter = (props) => {
   const { totalProducts, pageNumber, filterProducts } = props
-  console.log(totalProducts)
+  // console.log(totalProducts)
   return (
     <div className="product-filter">
       <Card style={{ background: "greenyellow" }}>

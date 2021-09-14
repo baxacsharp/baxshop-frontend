@@ -4,65 +4,65 @@
  *
  */
 
-import React from 'react';
+import React from "react"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-import { Link } from 'react-router-dom';
+import { formatDate } from "../../../helpers/date"
 
-import { formatDate } from '../../../helpers/date';
+const OrderList = (props) => {
+  const { orders } = props
 
-const OrderList = props => {
-  const { orders } = props;
-
-  const renderFirstItem = order => {
+  const renderFirstItem = (order) => {
     if (order.products) {
-      const product = order.products[0].product;
+      const product = order.products[0].product
       return (
         <img
-          className='item-image'
+          className="item-image"
           src={`${
             product && product?.imageUrl
               ? product?.imageUrl
-              : '/images/placeholder-image.png'
+              : "/images/placeholder-image.png"
           }`}
         />
-      );
+      )
     } else {
-      return <img className='item-image' src='/images/placeholder-image.png' />;
+      return <img className="item-image" src="/images/placeholder-image.png" />
     }
-  };
+  }
 
   return (
-    <div className='order-list'>
+    <div className="order-list">
       {orders.map((order, index) => (
-        <div key={index} className='order-box'>
-          <Link to={`/order/${order._id}`} className='d-block box-link'>
-            <div className='d-flex flex-column flex-lg-row mb-3'>
-              <div className='order-first-item p-lg-3'>
+        <div key={index} className="order-box">
+          <Link to={`/order/${order._id}`} className="d-block box-link">
+            <div className="d-flex flex-column flex-lg-row mb-3">
+              <div className="order-first-item p-lg-3">
                 {renderFirstItem(order)}
               </div>
-              <div className='d-flex flex-column flex-xl-row justify-content-between flex-1 ml-lg-2 mr-xl-4 p-3'>
-                <div className='order-details'>
-                  <div className='mb-1'>
-                    <span>Status</span>
+              <div className="d-flex flex-column flex-xl-row justify-content-between flex-1 ml-lg-2 mr-xl-4 p-3">
+                <div className="order-details">
+                  <div className="mb-1">
+                    <StyledSpan>Status</StyledSpan>
                     {order?.products ? (
-                      <span className='order-label order-status'>{` ${order?.products[0].status}`}</span>
+                      <StyledSpan className="order-label order-status">{` ${order?.products[0].status}`}</StyledSpan>
                     ) : (
-                      <span className='order-label order-status'>{` Unavailable`}</span>
+                      <StyledSpan className="order-label order-status">{` Unavailable`}</StyledSpan>
                     )}
                   </div>
-                  <div className='mb-1'>
-                    <span>Order #</span>
-                    <span className='order-label'>{` ${order._id}`}</span>
+                  <div className="mb-1">
+                    <StyledSpan>Order #</StyledSpan>
+                    <StyledSpan className="order-label">{` ${order._id}`}</StyledSpan>
                   </div>
-                  <div className='mb-1'>
-                    <span>Ordered on</span>
-                    <span className='order-label'>{` ${formatDate(
+                  <div className="mb-1">
+                    <StyledSpan>Ordered on</StyledSpan>
+                    <StyledSpan className="order-label">{` ${formatDate(
                       order.created
-                    )}`}</span>
+                    )}`}</StyledSpan>
                   </div>
-                  <div className='mb-1'>
-                    <span>Order Total</span>
-                    <span className='order-label'>{` $${order?.totalWithTax}`}</span>
+                  <div className="mb-1">
+                    <StyledSpan>Order Total</StyledSpan>
+                    <StyledSpan className="order-label">{` $${order?.total}`}</StyledSpan>
                   </div>
                 </div>
               </div>
@@ -71,7 +71,10 @@ const OrderList = props => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default OrderList;
+export default OrderList
+const StyledSpan = styled.span`
+  background-color: honeydew !important;
+`

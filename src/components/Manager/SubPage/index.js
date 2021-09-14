@@ -4,31 +4,37 @@
  *
  */
 
-import React from 'react';
+import React from "react"
+import styled from "styled-components"
+import Button from "../../Common/Button"
 
-import Button from '../../Common/Button';
-
-const SubPage = props => {
-  const { title, actionTitle, handleAction, children } = props;
+const SubPage = (props) => {
+  const { title, actionTitle, handleAction, children } = props
 
   return (
-    <div className='sub-page'>
-      <div className='subpage-header'>
-        <h2>{title}</h2>
+    <div className="sub-page">
+      <div className="subpage-header">
+        <StyledText>{title}</StyledText>
         {actionTitle && (
-          <div className='action'>
-            <Button
-              variant='none'
-              size='sm'
+          <div className="action">
+            <StyledButton
+              variant="none"
+              size="sm"
               text={actionTitle}
               onClick={handleAction}
             />
           </div>
         )}
       </div>
-      <div className='subpage-body'>{children}</div>
+      <div className="subpage-body">{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default SubPage;
+export default SubPage
+const StyledButton = styled(Button)`
+  background-color: aquamarine !important;
+`
+const StyledText = styled.h2`
+  color: rosybrown !important;
+`
