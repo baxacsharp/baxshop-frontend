@@ -53,6 +53,7 @@ function App() {
   //     </Provider>
   //   )
   // } else {
+  console.log(store)
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
