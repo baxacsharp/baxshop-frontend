@@ -149,7 +149,7 @@ export const addCategory = () => {
         return dispatch({ type: SET_CATEGORY_FORM_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/category/add`, newCategory)
+      const response = await axios.post(endpoint + `/category`, newCategory)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

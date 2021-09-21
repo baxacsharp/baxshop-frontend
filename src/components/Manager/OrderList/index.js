@@ -62,7 +62,7 @@ const OrderList = (props) => {
                   </div>
                   <div className="mb-1">
                     <StyledSpan>Order Total</StyledSpan>
-                    <StyledSpan className="order-label">{` $${order?.total}`}</StyledSpan>
+                    <StyledSpan className="order-label">{` $${order?.products[0].totalPrice}`}</StyledSpan>
                   </div>
                 </div>
               </div>

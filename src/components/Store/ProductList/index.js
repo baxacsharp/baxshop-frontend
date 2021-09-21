@@ -5,16 +5,20 @@
  */
 
 import React from "react"
-
+import Aos from "aos"
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
-
+import "aos/dist/aos.css"
 import AddToWishList from "../AddToWishList"
 
 const ProductList = (props) => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 })
+  }, [])
   const { products, updateWishlist, authenticated } = props
   console.log(products)
   return (
-    <div className="product-list">
+    <div className="product-list" data-aos="zoom-out-left">
       {products.map((product, index) => (
         <div key={index} className="mb-3 mb-md-0">
           <div className="product-container">

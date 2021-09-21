@@ -4,59 +4,60 @@
  *
  */
 
-import React from 'react';
+import React from "react"
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux"
 
-import actions from '../../actions';
+import actions from "../../actions"
 
-import SubPage from '../../components/Manager/SubPage';
-import OrderList from '../../components/Manager/OrderList';
-import OrderSearch from '../../components/Manager/OrderSearch';
-import NotFound from '../../components/Common/NotFound';
-import LoadingIndicator from '../../components/Common/LoadingIndicator';
+import SubPage from "../../components/Manager/SubPage"
+import OrderList from "../../components/Manager/OrderList"
+import OrderSearch from "../../components/Manager/OrderSearch"
+import NotFound from "../../components/Common/NotFound"
+import LoadingIndicator from "../../components/Common/LoadingIndicator"
+import { filter } from "compression"
 
 class List extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      search: ''
-    };
+      search: "",
+    }
   }
 
   componentDidMount() {
-    this.props.fetchOrders();
+    this.props.fetchOrders()
   }
 
-  handleOrderSearch = e => {
+  handleOrderSearch = (e) => {
     if (e.value.length >= 2) {
       this.setState({
-        search: e.value
-      });
+        search: e.value,
+      })
     } else {
       this.setState({
-        search: ''
-      });
+        search: "",
+      })
     }
-  };
+  }
 
   render() {
-    const { history, user, orders, isLoading, searchOrders } = this.props;
-    const { search } = this.state;
+    const { history, user, orders, isLoading, searchOrders } = this.props
+    const { search } = this.state
 
     const filteredOrders = search
-      ? orders.filter(o => o._id.includes(search))
-      : orders;
-
+      ? orders.filter((o) => o._id.includes(search))
+      : orders
+    console.log(filteredOrders)
     return (
-      <div className='order-dashboard'>
+      <div className="order-dashboard">
         <SubPage
-          title='Your Orders'
-          actionTitle={user.role === 'ROLE_ADMIN' && 'Customer Orders'}
+          title="Your Orders"
+          actionTitle={user.role === "ROLE_ADMIN" && "Customer Orders"}
           handleAction={() =>
-            user.role === 'ROLE_ADMIN' &&
-            history.push('/dashboard/orders/customers')
+            user.role === "ROLE_ADMIN" &&
+            history.push("/dashboard/orders/customers")
           }
         >
           <OrderSearch
@@ -69,21 +70,21 @@ class List extends React.PureComponent {
           ) : orders.length > 0 ? (
             <OrderList orders={filteredOrders} />
           ) : (
-            <NotFound message='you have no orders yet!' />
+            <NotFound message="you have no orders yet!" />
           )}
         </SubPage>
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.account.user,
     orders: state.order.orders,
     isLoading: state.order.isLoading,
-    isOrderAddOpen: state.order.isOrderAddOpen
-  };
-};
+    isOrderAddOpen: state.order.isOrderAddOpen,
+  }
+}
 
-export default connect(mapStateToProps, actions)(List);
+export default connect(mapStateToProps, actions)(List)

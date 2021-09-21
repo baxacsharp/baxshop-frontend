@@ -123,9 +123,12 @@ const OrderItems = (props) => {
                       )}
                     </div>
                     <div className="d-flex justify-content-between flex-wrap d-md-none mt-1">
-                      <StyledPTag className="mb-1 mr-4">
+                      <StyledPTag className="mt-3 mb-1 mr-4">
                         Status
-                        <span className="order-label order-status">{` ${item.status}`}</span>
+                        <span
+                          style={{ marginTop: "10px" }}
+                          className="order-label order-status"
+                        >{` ${item.status}`}</span>
                       </StyledPTag>
                       <StyledPTag className="mb-1 mr-4">
                         Quantity

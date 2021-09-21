@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-
+import styled, { keyframes } from "styled-components"
 import { connect } from "react-redux"
 import { Row, Col } from "reactstrap"
 
@@ -14,6 +14,7 @@ import actions from "../../actions"
 import Input from "../../components/Common/Input"
 import Button from "../../components/Common/Button"
 import LoadingIndicator from "../../components/Common/LoadingIndicator"
+import { zoomInUp } from "react-animations"
 
 class Sell extends React.PureComponent {
   render() {
@@ -32,12 +33,12 @@ class Sell extends React.PureComponent {
     }
 
     return (
-      <div className="sell">
+      <StyledHead className="sell">
         {isLoading && <LoadingIndicator />}
-        <h2>Become A MERN Store Seller!</h2>
+        <h2 style={{ color: "sienna" }}>Become A MERN Store Seller!</h2>
         <hr />
         <Row>
-          <Col xs="12" md="6" className="order-2 order-md-1">
+          <StyledCol xs="12" md="6" className="order-2 order-md-1">
             <form onSubmit={handleSubmit}>
               <Row>
                 <Col xs="12">
@@ -111,14 +112,18 @@ class Sell extends React.PureComponent {
                 <Button type="submit" text="Submit" disabled={isSubmitting} />
               </div>
             </form>
-          </Col>
+          </StyledCol>
           <Col xs="12" md="6" className="order-1 order-md-2">
             <Row>
               <Col xs="12" className="order-2 order-md-1 text-md-center mb-3">
                 <div className="agreement-banner-text">
-                  <h3>Would you like to sell your products on MERN Store!</h3>
-                  <h4>Grow your business with MERN Store</h4>
-                  <b>Apply Today</b>
+                  <h3 style={{ color: "white" }}>
+                    Would you like to sell your products on BaxShop!
+                  </h3>
+                  <h4 style={{ color: "white" }}>
+                    Grow your business with BaxShop
+                  </h4>
+                  <b style={{ color: "wheat" }}>Apply Today</b>
                 </div>
               </Col>
 
@@ -135,7 +140,7 @@ class Sell extends React.PureComponent {
             </Row>
           </Col>
         </Row>
-      </div>
+      </StyledHead>
     )
   }
 }
@@ -150,3 +155,21 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, actions)(Sell)
+const AnimatedCol = keyframes`${zoomInUp}`
+
+const StyledHead = styled.div`
+  & h2,
+  h3,
+  h4 {
+    color: sienna !important;
+  }
+`
+
+const StyledCol = styled(Col)`
+  :hover {
+    box-shadow: 0 0 10px white, 0 0 40px whitesmoke, 0 0 10px wheat !important;
+  }
+  animation: 2s ${AnimatedCol};
+  background-color: #454545;
+  border: 2px solid goldenrod;
+`

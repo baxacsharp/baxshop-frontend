@@ -180,8 +180,8 @@ export const updateAddress = () => {
       )
 
       if (response.data) {
-        dispatch(goBack())
-        // dispatch(goBack(null))
+        window.history.back()
+        // dispatch(goBack(null))np
       }
     } catch (error) {
       handleError(error, dispatch)

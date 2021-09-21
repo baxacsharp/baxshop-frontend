@@ -36,7 +36,7 @@ const OrderSummary = (props) => {
       <div className="d-flex align-items-center summary-item">
         <StyledPTag className="summary-label">Total:</StyledPTag>
         <StyledPTag className="summary-value ml-auto">
-          ${order.total}
+          ${order.products[0].totalPrice}
         </StyledPTag>
       </div>
     </Col>
