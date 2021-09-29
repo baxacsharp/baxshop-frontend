@@ -52,7 +52,7 @@ export const fetchStoreBrands = () => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/brands/lists`)
+      const response = await axios.get(endpoint + `brands/lists`)
 
       dispatch({
         type: FETCH_STORE_BRANDS,
