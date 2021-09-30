@@ -48,7 +48,7 @@ export const login = () => {
 
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + "/user/login", user)
+      const response = await axios.post(endpoint + "user/login", user)
 
       const firstName = response.data.user.firstName
 

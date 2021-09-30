@@ -63,7 +63,7 @@ export const fetchAddresses = () => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch(setAddressLoading(true))
-      const response = await axios.get(endpoint + "/address")
+      const response = await axios.get(endpoint + "address")
       dispatch({ type: FETCH_ADDRESSES, payload: response.data })
     } catch (error) {
       handleError(error, dispatch)
@@ -78,7 +78,7 @@ export const fetchAddress = (addressId) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/address/${addressId}`)
+      const response = await axios.get(endpoint + `address/${addressId}`)
 
       dispatch({
         type: FETCH_ADDRESS,
@@ -122,7 +122,7 @@ export const addAddress = () => {
         ...newAddress,
       }
 
-      const response = await axios.post(endpoint + "/address", address)
+      const response = await axios.post(endpoint + "address", address)
       // console.log(response)
       // const successfulOptions = {
       //   title: `${response.data.message}`,
@@ -175,7 +175,7 @@ export const updateAddress = () => {
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.put(
-        endpoint + `/address/${newAddress._id}`,
+        endpoint + `address/${newAddress._id}`,
         newAddress
       )
 
@@ -194,7 +194,7 @@ export const deleteAddress = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.delete(endpoint + `/address/${id}`)
+      const response = await axios.delete(endpoint + `address/${id}`)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

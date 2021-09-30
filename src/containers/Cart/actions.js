@@ -146,7 +146,7 @@ export const getCartId = () => {
       const products = getCartItems(cartItems)
       // create cart id if there is no one
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/cart`, { products })
+      const response = await axios.post(endpoint + `cart`, { products })
       // console.log(response)
       dispatch(setCartId(response.data._id))
     } catch (error) {

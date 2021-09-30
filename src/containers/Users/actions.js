@@ -15,7 +15,7 @@ export const fetchUsers = (filter) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(
-        endpoint + `/user/search?firstName=/^` + filter + "/i"
+        endpoint + `user/search?firstName=/^` + filter + "/i"
       )
       console.log(response)
       dispatch({ type: FETCH_USERS, payload: response.data })

@@ -49,7 +49,7 @@ export const contactUs = () => {
         return dispatch({ type: SET_CONTACT_FORM_ERRORS, payload: errors })
       }
 
-      const response = await axios.post(endpoint + "/contact", contact)
+      const response = await axios.post(endpoint + "contact", contact)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

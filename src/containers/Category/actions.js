@@ -68,7 +68,7 @@ export const fetchStoreCategories = () => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/category/list`)
+      const response = await axios.get(endpoint + `category/list`)
 
       dispatch({
         type: FETCH_STORE_CATEGORIES,
@@ -86,7 +86,7 @@ export const fetchCategories = () => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch({ type: SET_CATEGORIES_LOADING, payload: true })
-      const response = await axios.get(endpoint + `/category`)
+      const response = await axios.get(endpoint + `category`)
 
       dispatch({
         type: FETCH_CATEGORIES,
@@ -105,7 +105,7 @@ export const fetchCategory = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/category/${id}`)
+      const response = await axios.get(endpoint + `category/${id}`)
 
       response.data.products = formatSelectOptions(response.data.products)
 
@@ -149,7 +149,7 @@ export const addCategory = () => {
         return dispatch({ type: SET_CATEGORY_FORM_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/category`, newCategory)
+      const response = await axios.post(endpoint + `category`, newCategory)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,
@@ -205,7 +205,7 @@ export const updateCategory = () => {
         })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.put(endpoint + `/category/${category._id}`, {
+      const response = await axios.put(endpoint + `category/${category._id}`, {
         category: newCategory,
       })
 
@@ -231,7 +231,7 @@ export const activateCategory = (id, value) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.put(endpoint + `/category/${id}/active`, {
+      const response = await axios.put(endpoint + `category/${id}/active`, {
         category: {
           isActive: value,
         },
@@ -257,7 +257,7 @@ export const deleteCategory = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.delete(endpoint + `/category/${id}`)
+      const response = await axios.delete(endpoint + `category/${id}`)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

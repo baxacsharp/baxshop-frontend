@@ -80,7 +80,7 @@ export const sellWithUs = () => {
       dispatch({ type: SET_SELL_LOADING, payload: true })
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.post(
-        endpoint + "/merchant/seller-request",
+        endpoint + "merchant/seller-request",
         merchant
       )
 
@@ -107,7 +107,7 @@ export const fetchMerchants = () => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch({ type: SET_MERCHANTS_LOADING, payload: true })
 
-      const response = await axios.get(endpoint + `/merchant/list`)
+      const response = await axios.get(endpoint + `merchant/list`)
 
       dispatch({
         type: FETCH_MERCHANTS,
@@ -125,7 +125,7 @@ export const approveMerchant = (merchant) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      await axios.put(endpoint + `/merchant/approve/${merchant._id}`)
+      await axios.put(endpoint + `merchant/approve/${merchant._id}`)
 
       dispatch(fetchMerchants())
     } catch (error) {
@@ -138,7 +138,7 @@ export const rejectMerchant = (merchant) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      await axios.put(endpoint + `/merchant/reject/${merchant._id}`)
+      await axios.put(endpoint + `merchant/reject/${merchant._id}`)
 
       dispatch(fetchMerchants())
     } catch (error) {
@@ -170,7 +170,7 @@ export const merchantSignUp = (token) => {
         return dispatch({ type: SET_SIGNUP_FORM_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      await axios.post(endpoint + `/merchant/signup/${token}`, merchant)
+      await axios.post(endpoint + `merchant/signup/${token}`, merchant)
 
       // const successfulOptions = {
       //   title: `You have signed up successfully! Please sign in with the email and password. Thank you!`,
@@ -194,7 +194,7 @@ export const deleteMerchant = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.delete(endpoint + `/merchant/delete/${id}`)
+      const response = await axios.delete(endpoint + `merchant/delete/${id}`)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

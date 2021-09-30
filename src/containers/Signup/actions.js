@@ -69,7 +69,7 @@ export const signUp = () => {
         ...newUser,
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + "/user/register", user)
+      const response = await axios.post(endpoint + "user/register", user)
 
       // const successfulOptions = {
       //   title: `You have signed up successfully! You will be receiving an email as well. Thank you!`,

@@ -35,7 +35,7 @@ export const fetchReviews = () => {
     try {
       dispatch({ type: SET_REVIEWS_LOADING, payload: true })
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/review`)
+      const response = await axios.get(endpoint + `review`)
 
       dispatch({ type: FETCH_REVIEWS, payload: response.data })
     } catch (error) {
@@ -77,7 +77,7 @@ export const deleteReview = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.delete(endpoint + `/review/${id}`)
+      const response = await axios.delete(endpoint + `review/${id}`)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,
@@ -103,7 +103,7 @@ export const fetchProductReviews = (slug) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/review/${slug}`)
+      const response = await axios.get(endpoint + `review/${slug}`)
       // console.log(response)
       const { ratingSummary, totalRatings, totalReviews, totalSummary } =
         getProductReviewsSummary(response.data)
@@ -159,7 +159,7 @@ export const addProductReview = () => {
         return dispatch({ type: SET_REVIEW_FORM_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/review`, newReview)
+      const response = await axios.post(endpoint + `review`, newReview)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

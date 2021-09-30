@@ -70,7 +70,7 @@ export const fetchBrands = () => {
     try {
       dispatch({ type: SET_BRANDS_LOADING, payload: true })
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/brands`)
+      const response = await axios.get(endpoint + `brands`)
 
       dispatch({
         type: FETCH_BRANDS,
@@ -89,7 +89,7 @@ export const fetchBrand = (brandId) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/brands/${brandId}`)
+      const response = await axios.get(endpoint + `brands/${brandId}`)
 
       dispatch({
         type: FETCH_BRAND,
@@ -106,7 +106,7 @@ export const fetchBrandsSelect = () => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/brands/list/select`)
+      const response = await axios.get(endpoint + `brands/list/select`)
 
       const formattedBrands = formatSelectOptions(response.data, true)
 
@@ -142,7 +142,7 @@ export const addBrand = () => {
         return dispatch({ type: SET_BRAND_FORM_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/brands`, brand)
+      const response = await axios.post(endpoint + `brands`, brand)
       // console.log(response)
       // const successfulOptio ns = {
       //   title: `${response.data.message}`,
@@ -193,7 +193,7 @@ export const updateBrand = () => {
         return dispatch({ type: SET_BRAND_FORM_EDIT_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.put(endpoint + `/brands/${brand._id}`, {
+      const response = await axios.put(endpoint + `brands/${brand._id}`, {
         brand: newBrand,
       })
 
@@ -219,7 +219,7 @@ export const activateBrand = (id, value) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.put(endpoint + `/brands/${id}/active`, {
+      const response = await axios.put(endpoint + `brands/${id}/active`, {
         brand: {
           isActive: value,
         },
@@ -245,7 +245,7 @@ export const deleteBrand = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.delete(endpoint + `/brands/${id}`)
+      const response = await axios.delete(endpoint + `brands/${id}`)
       // console.log(response)
       // const successfulOptions = {
       //   title: `${response.data.message}`,

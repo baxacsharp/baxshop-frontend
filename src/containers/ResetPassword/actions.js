@@ -47,7 +47,7 @@ export const resetPassowrd = (token) => {
         })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/user/reset/${token}`, user)
+      const response = await axios.post(endpoint + `user/reset/${token}`, user)
 
       if (response.data) {
         dispatch(push("/login"))
@@ -87,7 +87,7 @@ export const resetAccountPassword = () => {
         })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/user/recover`, user)
+      const response = await axios.post(endpoint + `user/recover`, user)
       if (response.data) {
         dispatch(signOut())
       }

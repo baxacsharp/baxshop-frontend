@@ -33,7 +33,7 @@ export const updateWishlist = (e) => {
           product: wishlist.name,
         }
         let endpoint = process.env.REACT_APP_BACKEND_URL
-        const response = await axios.post(endpoint + `/wishList`, newWishlist)
+        const response = await axios.post(endpoint + `wishList`, newWishlist)
 
         // const successfulOptions = {
         //   title: `${response.data.message}`,
@@ -62,7 +62,7 @@ export const deleteWishlist = (id) => {
   return async (dispatch) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.delete(endpoint + `/wishList/${id}`)
+      const response = await axios.delete(endpoint + `wishList/${id}`)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,
@@ -90,7 +90,7 @@ export const fetchWishlist = () => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch({ type: SET_WISHLIST_LOADING, payload: true })
 
-      const response = await axios.get(endpoint + `/wishList`)
+      const response = await axios.get(endpoint + `wishList`)
       // console.log(response)
       dispatch({ type: FETCH_WISHLIST, payload: response.data })
     } catch (error) {

@@ -41,7 +41,7 @@ export const subscribeToNewsletter = () => {
         return dispatch({ type: SET_NEWSLETTER_FORM_ERRORS, payload: errors })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post("/newsletter/subscribe", user)
+      const response = await axios.post("newsletter/subscribe", user)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

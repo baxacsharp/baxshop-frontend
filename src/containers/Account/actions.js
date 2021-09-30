@@ -44,7 +44,7 @@ export const fetchProfile = () => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch(setProfileLoading(true))
-      const response = await axios.get(endpoint + "/user/me")
+      const response = await axios.get(endpoint + "user/me")
       // console.log(response)
       dispatch({ type: FETCH_PROFILE, payload: response.data })
     } catch (error) {
@@ -61,7 +61,7 @@ export const updateProfile = () => {
 
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.put(endpoint + "/user/me", {
+      const response = await axios.put(endpoint + "user/me", {
         ...profile,
       })
 

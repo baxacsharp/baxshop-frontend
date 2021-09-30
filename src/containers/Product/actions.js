@@ -79,7 +79,7 @@ export const filterProducts = (n, v) => {
       dispatch({ type: SET_PRODUCTS_LOADING, payload: true })
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.post(
-        endpoint + `/products/advancedFilters`,
+        endpoint + `products/advancedFilters`,
         payload
       )
       dispatch({
@@ -108,7 +108,7 @@ export const fetchProducts = () => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch({ type: SET_PRODUCTS_LOADING, payload: true })
-      const response = await axios.get(endpoint + `/products`)
+      const response = await axios.get(endpoint + `products`)
       // console.log(response)
       dispatch({
         type: FETCH_PRODUCTS,
@@ -128,7 +128,7 @@ export const fetchStoreProducts = () => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       dispatch({ type: SET_PRODUCTS_LOADING, payload: true })
-      const response = await axios.get(endpoint + `/products/list`)
+      const response = await axios.get(endpoint + `products/list`)
       const s = getState().product.advancedFilters
       dispatch({
         type: SET_ADVANCED_FILTERS,
@@ -155,7 +155,7 @@ export const fetchProduct = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/products/${id}`)
+      const response = await axios.get(endpoint + `products/${id}`)
       // console.log(response)
       const inventory = response.data.product.quantity
       if (response.data.product.brand) {
@@ -183,7 +183,7 @@ export const fetchStoreProduct = (slug) => {
 
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/products/item/${slug}`)
+      const response = await axios.get(endpoint + `products/item/${slug}`)
       // console.log(response)
       const inventory = response.data.product.quantity
       const product = { ...response.data, inventory }
@@ -206,9 +206,7 @@ export const fetchBrandProducts = (slug) => {
 
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(
-        endpoint + `/products/list/brand/${slug}`
-      )
+      const response = await axios.get(endpoint + `products/list/brand/${slug}`)
       console.log(response)
       dispatch({
         type: FETCH_PRODUCTS,
@@ -229,7 +227,7 @@ export const fetchCategoryProducts = (slug) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.get(
-        endpoint + `/products/list/category/${slug}`
+        endpoint + `products/list/category/${slug}`
       )
       // console.log(response)
       dispatch({
@@ -248,7 +246,7 @@ export const fetchProductsSelect = () => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/products/list/select`)
+      const response = await axios.get(endpoint + `products/list/select`)
       console.log(response)
       const formattedProducts = formatSelectOptions(response.data.products)
 
@@ -315,12 +313,12 @@ export const addProduct = () => {
       }
 
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.post(endpoint + `/products/add`, newProduct)
+      const response = await axios.post(endpoint + `products/add`, newProduct)
       // console.log(response)
       let formData = new FormData()
       formData.append("image", product.image)
       await axios.post(
-        endpoint + `/products/${response.data.product._id}/image`,
+        endpoint + `products/${response.data.product._id}/image`,
         formData
       )
 
@@ -389,7 +387,7 @@ export const updateProduct = () => {
         })
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.put(endpoint + `/products/${product._id}`, {
+      const response = await axios.put(endpoint + `products/${product._id}`, {
         product: newProduct,
       })
 
@@ -414,7 +412,7 @@ export const activateProduct = (id, value) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.put(endpoint + `/products/${id}/active`, {
+      const response = await axios.put(endpoint + `products/${id}/active`, {
         product: {
           isActive: value,
         },
@@ -440,7 +438,7 @@ export const deleteProduct = (id) => {
   return async (dispatch, getState) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.delete(endpoint + `/products/delete/${id}`)
+      const response = await axios.delete(endpoint + `products/delete/${id}`)
 
       // const successfulOptions = {
       //   title: `${response.data.message}`,

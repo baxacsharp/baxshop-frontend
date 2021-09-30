@@ -48,7 +48,7 @@ export const onSuggestionsFetchRequested = (value) => {
       if (inputValue && inputValue.length % 3 === 0) {
         let endpoint = process.env.REACT_APP_BACKEND_URL
         const response = await axios.get(
-          endpoint + `/products/list/search/${inputValue}`
+          endpoint + `products/list/search/${inputValue}`
         )
         dispatch({
           type: SUGGESTIONS_FETCH_REQUEST,

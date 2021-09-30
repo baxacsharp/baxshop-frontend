@@ -40,7 +40,7 @@ export const fetchOrders = () => {
     try {
       dispatch(setOrderLoading(true))
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/order`)
+      const response = await axios.get(endpoint + `order`)
       console.log(response)
       if (response.data) {
         dispatch({
@@ -62,7 +62,7 @@ export const fetchSearchOrders = (filter) => {
     try {
       dispatch(setOrderLoading(true))
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(`/api/order/search`, {
+      const response = await axios.get(endpoint + `order/search`, {
         params: {
           search: filter.value,
         },
@@ -94,7 +94,7 @@ export const fetchOrder = (id, withLoading = true) => {
         dispatch(setOrderLoading(true))
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      const response = await axios.get(endpoint + `/order/${id}`)
+      const response = await axios.get(endpoint + `order/${id}`)
       console.log(response)
       dispatch({
         type: FETCH_ORDER,
@@ -115,7 +115,7 @@ export const cancelOrder = () => {
     try {
       const order = getState().order.order
       let endpoint = process.env.REACT_APP_BACKEND_URL
-      await axios.delete(endpoint + `/order/cancel/${order._id}`)
+      await axios.delete(endpoint + `order/cancel/${order._id}`)
 
       dispatch(push(`/dashboard/orders`))
     } catch (error) {
@@ -130,7 +130,7 @@ export const updateOrderItemStatus = (itemId, status) => {
       const order = getState().order.order
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.put(
-        endpoint + `/order/status/item/${itemId}`,
+        endpoint + `order/status/item/${itemId}`,
         {
           orderId: order._id,
           cartId: order.cartId,
@@ -166,7 +166,7 @@ export const addOrder = () => {
 
       if (cartId) {
         let endpoint = process.env.REACT_APP_BACKEND_URL
-        const response = await axios.post(endpoint + `/order/add`, {
+        const response = await axios.post(endpoint + `order/add`, {
           cartId,
           total,
         })
