@@ -108,6 +108,7 @@ const StyledRow = styled(Row)`
   }
 `
 const StyledButton = styled(Button)`
+background-color:blue;
 @media only screen and (min-size: 700px){
   width: 200px !important;
   margin-top: 100px;
