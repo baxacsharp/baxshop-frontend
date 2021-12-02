@@ -21,7 +21,7 @@ class ProductsShop extends React.PureComponent {
     const { products, isLoading, authenticated, updateWishlist } = this.props
  
     return (
-      <div className="products-shop">
+      <div className="products-shop" style={{ overflowX: "hidden" }}>
         {isLoading ? (
           <LoadingIndicator />
         ) : products && products.length > 0 ? (
