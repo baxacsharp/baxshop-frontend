@@ -105,9 +105,11 @@ const StyledRow = styled(Row)`
   }
 `
 const StyledButton = styled(Button)`
+@media only screen and (min-size: 700px){
   width: 200px !important;
   margin-top: 100px;
   margin-left: 50px;
+  }
   border-radius: 30px;
 `
 const StyledRow2 = styled(Row)`
