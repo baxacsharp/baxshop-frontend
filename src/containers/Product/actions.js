@@ -5,7 +5,7 @@
  */
 
 import { goBack } from "connected-react-router"
-// import { success } from 'react-notification-system-redux';
+import { success, warning, info } from "react-notification-system-redux"
 import axios from "axios"
 
 import {
@@ -322,14 +322,15 @@ export const addProduct = () => {
         formData
       )
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Add product`,
+        message: "SuccessFully added",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
         dispatch({
           type: ADD_PRODUCT,
           payload: response.data,
@@ -391,14 +392,15 @@ export const updateProduct = () => {
         product: newProduct,
       })
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Update product`,
+        message: "SuccessFully updated",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
         dispatch(goBack())
       }
     } catch (error) {
@@ -418,14 +420,14 @@ export const activateProduct = (id, value) => {
         },
       })
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Activated`,
+        position: "tr",
+        autoDismiss: 1,
+      }
 
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      if (response) {
+        dispatch(success(successfulOptions))
       }
     } catch (error) {
       handleError(error, dispatch)
@@ -440,14 +442,15 @@ export const deleteProduct = (id) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.delete(endpoint + `products/delete/${id}`)
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Delete product`,
+        message: "SuccessFully deleted",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
         dispatch({
           type: REMOVE_PRODUCT,
           payload: id,

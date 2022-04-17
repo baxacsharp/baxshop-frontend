@@ -4,7 +4,7 @@
  *
  */
 
-// import { success, warning, info } from 'react-notification-system-redux';
+import { success, warning, info } from "react-notification-system-redux"
 import { fetchStoreProducts } from "../Product/actions"
 import axios from "axios"
 
@@ -35,14 +35,15 @@ export const updateWishlist = (e) => {
         let endpoint = process.env.REACT_APP_BACKEND_URL
         const response = await axios.post(endpoint + `wishList`, newWishlist)
 
-        // const successfulOptions = {
-        //   title: `${response.data.message}`,
-        //   position: 'tr',
-        //   autoDismiss: 1
-        // };
+        const successfulOptions = {
+          title: `Update wishlist`,
+          message: "SuccessFully updated",
+          position: "tr",
+          autoDismiss: 1,
+        }
 
-        if (response.data) {
-          // dispatch(success(successfulOptions));
+        if (response) {
+          dispatch(success(successfulOptions))
           dispatch(fetchWishlist())
         }
       } else {
@@ -51,7 +52,7 @@ export const updateWishlist = (e) => {
           position: "tr",
           autoDismiss: 1,
         }
-        // dispatch(warning(retryOptions));
+        dispatch(warning(retryOptions))
       }
     } catch (error) {
       handleError(error, dispatch)
@@ -64,14 +65,15 @@ export const deleteWishlist = (id) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.delete(endpoint + `wishList/${id}`)
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Delete wishlist`,
+        message: "SuccessFully deleted",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      if (response) {
+        dispatch(success(successfulOptions))
         dispatch({
           type: REMOVE_WISHLIST,
           payload: id,

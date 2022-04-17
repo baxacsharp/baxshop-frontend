@@ -4,7 +4,7 @@
  *
  */
 
-// import { success } from 'react-notification-system-redux';
+import { success } from "react-notification-system-redux"
 import axios from "axios"
 
 import {
@@ -79,14 +79,15 @@ export const deleteReview = (id) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.delete(endpoint + `review/${id}`)
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Delete review`,
+        message: "SuccessFully deleted",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      if (response) {
+        dispatch(success(successfulOptions))
         dispatch({
           type: REMOVE_REVIEW,
           payload: id,

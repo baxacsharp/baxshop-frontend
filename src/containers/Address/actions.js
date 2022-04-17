@@ -23,7 +23,7 @@ import {
 } from "./constants"
 import handleError from "../../utils/error"
 import { allFieldsValidation } from "../../utils/validation"
-
+import { success, warning, info } from "react-notification-system-redux"
 export const addressChange = (name, value) => {
   let formData = {}
   formData[name] = value
@@ -123,15 +123,16 @@ export const addAddress = () => {
       }
 
       const response = await axios.post(endpoint + "address", address)
-      // console.log(response)
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      console.log(response)
+      const successfulOptions = {
+        title: `Add address`,
+        message: "SuccessFully added",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
         dispatch({
           type: ADD_ADDRESS,
           payload: response.data.toString(),
@@ -178,10 +179,15 @@ export const updateAddress = () => {
         endpoint + `address/${newAddress._id}`,
         newAddress
       )
-
-      if (response.data) {
-        window.history.back()
-        // dispatch(goBack(null))np
+      const successfulOptions = {
+        title: `Update address`,
+        message: "SuccessFully updated",
+        position: "tr",
+        autoDismiss: 1,
+      }
+      if (response) {
+        dispatch(info(successfulOptions))
+        dispatch(goBack())
       }
     } catch (error) {
       handleError(error, dispatch)
@@ -196,14 +202,14 @@ export const deleteAddress = (id) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.delete(endpoint + `address/${id}`)
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
-
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      const successfulOptions = {
+        title: `Delete address`,
+        message: "SuccessFully deleted",
+        position: "tr",
+        autoDismiss: 1,
+      }
+      if (response) {
+        dispatch(warning(successfulOptions))
         dispatch({
           type: REMOVE_ADDRESS,
           payload: id,

@@ -5,7 +5,7 @@
  */
 
 import { push } from "connected-react-router"
-// import { success } from 'react-notification-system-redux';
+import { success } from "react-notification-system-redux"
 import axios from "axios"
 
 import {
@@ -117,15 +117,15 @@ export const handleCart = () => {
 
 export const handleCheckout = () => {
   return (dispatch, getState) => {
-    // const successfulOptions = {
-    //   title: `Please Login to proceed to checkout`,
-    //   position: 'tr',
-    //   autoDismiss: 1
-    // };
+    const successfulOptions = {
+      title: `Please Login to proceed to checkout`,
+      position: "tr",
+      autoDismiss: 1,
+    }
 
     dispatch(toggleCart())
     dispatch(push("/login"))
-    // dispatch(success(successfulOptions));
+    dispatch(success(successfulOptions))
   }
 }
 
