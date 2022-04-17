@@ -32,10 +32,11 @@ import contactReducer from "./containers/Contact/reducer"
 import orderReducer from "./containers/Order/reducer"
 import reviewReducer from "./containers/Review/reducer"
 import wishListReducer from "./containers/WishList/reducer"
-
+import { reducer as notifications } from "react-notification-system-redux"
 const createReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
+    notifications,
     application: applicationReducer,
     homepage: homepageReducer,
     signup: signupReducer,

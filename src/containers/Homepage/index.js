@@ -16,6 +16,9 @@ import { style } from "dom-helpers"
 
 class Homepage extends React.PureComponent {
   render() {
+    const registerLink = () => {
+      this.props.history.push("/register")
+    }
     return (
       <Container>
         <StyledRow>
@@ -31,7 +34,9 @@ class Homepage extends React.PureComponent {
             </div>
           </Col>
           <Col xs={4}>
-            <StyledButton color="primary">Sign Up</StyledButton>
+            <StyledButton color="primary" onClick={registerLink}>
+              Sign Up
+            </StyledButton>
           </Col>
         </StyledRow>
         <Row>
@@ -105,9 +110,17 @@ const StyledRow = styled(Row)`
   }
 `
 const StyledButton = styled(Button)`
-  width: 200px !important;
-  margin-top: 100px;
-  margin-left: 50px;
+  background-color: blue !important;
+  @media only screen and (min-size: 700px) {
+    width: 200px !important;
+    margin-top: 100px;
+    margin-left: 50px;
+  }
+  @media only screen and (max-size: 1100px) {
+    width: 200px !important;
+    margin-top: 100px;
+    margin-left: 50px;
+  }
   border-radius: 30px;
 `
 const StyledRow2 = styled(Row)`

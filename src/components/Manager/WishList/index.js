@@ -41,7 +41,7 @@ const WishList = (props) => {
           className="d-flex flex-row align-items-center mx-0 mb-3 wishlist-box"
         >
           <Link
-            to={`/product/${item.product.slug}`}
+            to={`/product/${item.product._id}`}
             key={index}
             className="d-flex flex-1 align-items-center text-truncate"
           >

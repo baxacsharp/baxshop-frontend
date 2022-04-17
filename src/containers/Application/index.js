@@ -20,7 +20,7 @@ import HomePage from "../Homepage"
 import Dashboard from "../Dashboard"
 import Navigation from "../Navigation"
 import Authentication from "../Authentication"
-// import Notification from "../Notification"
+import Notification from "../Notification"
 import ForgotPassword from "../ForgotPassword"
 import ResetPassword from "../ResetPassword"
 import Shop from "../Shop"
@@ -62,7 +62,7 @@ class Application extends React.PureComponent {
   render() {
     return (
       <div className="application">
-        {/* <Notification /> */}
+        <Notification />
         <Navigation />
         <StyledHeader className="main">
           <Container>

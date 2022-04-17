@@ -1,3 +1,4 @@
+import React from "react"
 import { RiVisaLine } from "react-icons/ri"
 import { SiAmericanexpress } from "react-icons/si"
 import {

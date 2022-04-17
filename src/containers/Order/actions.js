@@ -67,7 +67,7 @@ export const fetchSearchOrders = (filter) => {
           search: filter.value,
         },
       })
-
+      console.log(response)
       dispatch({ type: FETCH_SEARCHED_ORDERS, payload: response.data.orders })
     } catch (error) {
       handleError(error, dispatch)

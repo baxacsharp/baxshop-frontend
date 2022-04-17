@@ -23,7 +23,8 @@ class Customer extends React.PureComponent {
 
   render() {
     const { history, user, orders, isLoading, searchOrders } = this.props
-
+    console.log(user)
+    console.log(orders)
     return (
       <div className="order-dashboard">
         <SubPage
@@ -50,7 +51,7 @@ class Customer extends React.PureComponent {
 const mapStateToProps = (state) => {
   return {
     user: state.account.user,
-    orders: state.order.searchedOrders,
+    orders: state.order.orders,
     isLoading: state.order.isLoading,
     isOrderAddOpen: state.order.isOrderAddOpen,
   }

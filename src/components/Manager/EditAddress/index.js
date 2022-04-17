@@ -26,7 +26,6 @@ const EditAddress = (props) => {
     event.preventDefault()
     updateAddress()
   }
-
   return (
     <div className="edit-address">
       <form onSubmit={handleSubmit} noValidate>

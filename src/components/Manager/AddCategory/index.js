@@ -25,6 +25,7 @@ const AddCategory = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     addCategory()
+    window.location.reload()
   }
 
   return (
