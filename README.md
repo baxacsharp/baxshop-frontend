@@ -20,7 +20,7 @@ An e-commerce store built with MERN stack based on sports items which users can 
 * Redux Thunk middleware to handle asynchronous redux actions
 
 ## Demo
-The app is deployed on vercel. You can check it out <a href='https://ecom-frontend-nu.vercel.app/'/>
+The app is deployed on vercel. You can check it out <a href='https://ecom-frontend-nu.vercel.app/'>here</a>
 
 ## Setup
 <Container >
