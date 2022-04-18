@@ -23,7 +23,7 @@ An e-commerce store built with MERN stack based on sports items which users can 
 The app is deployed on vercel. You can check it out <a href='https://ecom-frontend-nu.vercel.app/'/>
 
 ## Setup
-<Container>
+<Container style={{backgroundColor:'greenyellow'}}>
   <div>
   SENDGRID_API_KEY
   </div>
@@ -38,6 +38,18 @@ The app is deployed on vercel. You can check it out <a href='https://ecom-fronte
   </div>
     <div>
   JWT_REFRESH_SECRET
+  </div>
+   <div>
+  JWT_SECRET
+  </div>
+   <div>
+  MONGO_CONNECTION
+  </div>
+   <div>
+  FRONTEND_PROD_URL
+  </div>
+   <div>
+  FRONTEND_DEV_URL
   </div>
   </Container>
 
