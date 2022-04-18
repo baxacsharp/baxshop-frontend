@@ -49,7 +49,7 @@ class List extends React.PureComponent {
     const filteredOrders = search
       ? orders.filter((o) => o._id.includes(search))
       : orders
-    console.log(filteredOrders)
+    console.log(orders)
     return (
       <div className="order-dashboard">
         <SubPage
@@ -67,7 +67,7 @@ class List extends React.PureComponent {
           />
           {isLoading ? (
             <LoadingIndicator inline />
-          ) : orders.length > 0 ? (
+          ) : orders && orders.length > 0 ? (
             <OrderList orders={filteredOrders} />
           ) : (
             <NotFound message="you have no orders yet!" />

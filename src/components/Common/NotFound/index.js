@@ -4,19 +4,21 @@
  *
  */
 
-import React from 'react';
-
-const NotFound = props => {
-  const { message, className, children } = props;
+import React from "react"
+import styled from "styled-components"
+const NotFound = (props) => {
+  const { message, className, children } = props
   return (
-    <div className={`not-found ${className}`}>
+    <StyledNotFound className={`not-found ${className}`}>
       {message ? message : children}
-    </div>
-  );
-};
+    </StyledNotFound>
+  )
+}
 
 NotFound.defaultProps = {
-  className: ''
-};
-
-export default NotFound;
+  className: "",
+}
+const StyledNotFound = styled.div`
+  color: white !important;
+`
+export default NotFound

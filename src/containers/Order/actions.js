@@ -170,8 +170,8 @@ export const addOrder = () => {
           cartId,
           total,
         })
-        // console.log(response)
-        dispatch(push(`/order/success/${response.data._id}`))
+        console.log(response)
+        dispatch(push(`/order/success/${response.data.order._id}`))
         dispatch(clearCart())
       }
     } catch (error) {
