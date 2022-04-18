@@ -23,7 +23,7 @@ An e-commerce store built with MERN stack based on sports items which users can 
 The app is deployed on vercel. You can check it out <a href='https://ecom-frontend-nu.vercel.app/'/>
 
 ## Setup
-<Container style={{backgroundColor:'greenyellow'}}>
+<Container style={{backgroundColor:'green'}}>
   <div>
   SENDGRID_API_KEY
   </div>
