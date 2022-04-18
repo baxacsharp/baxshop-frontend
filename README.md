@@ -24,7 +24,7 @@ The app is deployed on vercel. You can check it out <a href='https://ecom-fronte
 
 ## Setup
 <Container >
-  <div>
+  <div style={{backgroundColor:'green'}}>
   SENDGRID_API_KEY
   </div>
   <div>
