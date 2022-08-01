@@ -136,7 +136,7 @@ export const addAddress = () => {
         },
       }
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
         dispatch({
           type: ADD_ADDRESS,
           payload: response.data.toString(),

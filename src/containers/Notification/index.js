@@ -22,6 +22,16 @@ class Notification extends React.PureComponent {
           border: "2px solid greenyellow",
           backgroundColor: "green",
         },
+        info: {
+          color: "white",
+          border: "2px solid lightblue",
+          backgroundColor: "blue",
+        },
+        warning: {
+          color: "white",
+          border: "2px solid orange",
+          backgroundColor: "yellow",
+        },
       },
     }
     return <Notifications notifications={notifications} style={style} />

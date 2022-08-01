@@ -5,7 +5,7 @@
  */
 
 import { goBack } from "connected-react-router"
-// import { success } from 'react-notification-system-redux';
+import { success, warning, info } from "react-notification-system-redux"
 import axios from "axios"
 
 import {
@@ -143,15 +143,15 @@ export const addBrand = () => {
       }
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.post(endpoint + `brands`, brand)
-      // console.log(response)
-      // const successfulOptio ns = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Add brand`,
+        message: "SuccessFully added",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
         dispatch({
           type: ADD_BRAND,
           payload: response.data,
@@ -196,15 +196,15 @@ export const updateBrand = () => {
       const response = await axios.put(endpoint + `brands/${brand._id}`, {
         brand: newBrand,
       })
+      const successfulOptions = {
+        title: `update brand`,
+        message: "SuccessFully updated",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
-
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      if (response) {
+        dispatch(info(successfulOptions))
 
         dispatch(goBack())
       }
@@ -225,14 +225,15 @@ export const activateBrand = (id, value) => {
         },
       })
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Activate brand`,
+        message: "SuccessFully activated",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
       }
     } catch (error) {
       handleError(error, dispatch)
@@ -246,15 +247,15 @@ export const deleteBrand = (id) => {
     try {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.delete(endpoint + `brands/${id}`)
-      // console.log(response)
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Delete brand`,
+        message: "SuccessFully deleted",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      if (response) {
+        dispatch(warning(successfulOptions))
         dispatch({
           type: REMOVE_BRAND,
           payload: id,

@@ -32,12 +32,11 @@ class List extends React.PureComponent {
         >
           {isLoading ? (
             <LoadingIndicator inline />
+          ) : brands && brands.length > 0 ? (
+            <BrandList brands={brands} user={user} />
           ) : (
-            brands &&
-            brands.length > 0 && <BrandList brands={brands} user={user} />
+            <NotFound message="no brands found." />
           )}
-          : (
-          <NotFound message="no brands found." />)
         </SubPage>
       </>
     )

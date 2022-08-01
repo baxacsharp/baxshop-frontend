@@ -4,22 +4,22 @@
  *
  */
 
-import { TOGGLE_DASHBOARD_MENU } from './constants';
+import { TOGGLE_DASHBOARD_MENU } from "./constants"
 
 const initialState = {
-  isMenuOpen: false
-};
+  isMenuOpen: true,
+}
 
 const dashboardReducer = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_DASHBOARD_MENU:
       return {
         ...state,
-        isMenuOpen: !state.isMenuOpen
-      };
+        isMenuOpen: !state.isMenuOpen,
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default dashboardReducer;
+export default dashboardReducer

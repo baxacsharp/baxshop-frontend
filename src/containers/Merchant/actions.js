@@ -5,7 +5,7 @@
  */
 
 import { push } from "connected-react-router"
-// import { success } from 'react-notification-system-redux';
+import { success, warning } from "react-notification-system-redux"
 import axios from "axios"
 
 import {
@@ -54,7 +54,7 @@ export const sellWithUs = () => {
       const rules = {
         name: "required",
         email: "required|email",
-        phoneNumber: ["required", `regex:${phoneno}`],
+        phoneNumber: ["required"],
         brand: "required",
         business: "required|min:10",
       }
@@ -83,15 +83,16 @@ export const sellWithUs = () => {
         endpoint + "merchant/seller-request",
         merchant
       )
-
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
-
-      dispatch({ type: SELL_FORM_RESET })
-      // dispatch(success(successfulOptions));
+      console.log(response)
+      const successfulOptions = {
+        title: `Your request sent. Please pay attention to your email`,
+        position: "tr",
+        autoDismiss: 1,
+      }
+      if (response) {
+        dispatch({ type: SELL_FORM_RESET })
+        dispatch(success(successfulOptions))
+      }
     } catch (error) {
       handleError(error, dispatch)
     } finally {
@@ -172,14 +173,14 @@ export const merchantSignUp = (token) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       await axios.post(endpoint + `merchant/signup/${token}`, merchant)
 
-      // const successfulOptions = {
-      //   title: `You have signed up successfully! Please sign in with the email and password. Thank you!`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `You have signed up successfully! Please sign in with the email and password. Thank you!`,
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       dispatch(signOut())
-      // dispatch(success(successfulOptions));
+      dispatch(success(successfulOptions))
       dispatch(push("/login"))
       dispatch({ type: SIGNUP_RESET })
     } catch (error) {
@@ -196,14 +197,15 @@ export const deleteMerchant = (id) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.delete(endpoint + `merchant/delete/${id}`)
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Delete merchant`,
+        message: "SuccessFully deleted",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      if (response) {
+        dispatch(warning(successfulOptions))
         dispatch({
           type: REMOVE_MERCHANT,
           payload: id,

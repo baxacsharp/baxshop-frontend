@@ -4,7 +4,7 @@
  *
  */
 
-// import { success } from 'react-notification-system-redux';
+import { success } from "react-notification-system-redux"
 import axios from "axios"
 
 import {
@@ -71,18 +71,18 @@ export const signUp = () => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.post(endpoint + "user/register", user)
 
-      // const successfulOptions = {
-      //   title: `You have signed up successfully! You will be receiving an email as well. Thank you!`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `You have signed up successfully! You will be receiving an email as well. Thank you!`,
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       localStorage.setItem("token", response.data.accessToken)
 
       setToken(response.data.accessToken)
 
       dispatch(setAuth())
-      // dispatch(success(successfulOptions));
+      dispatch(success(successfulOptions))
       dispatch({ type: SIGNUP_RESET })
     } catch (error) {
       const title = `Please try to signup again!`

@@ -33,7 +33,7 @@ const MerchantList = (props) => {
             <StyledText className="text-black">Phone Number</StyledText>
             <StyledPTag>{merchant.phoneNumber}</StyledPTag>
             <StyledText className="text-black">Request date</StyledText>
-            <StyledPTag>{formatDate(merchant.created)}</StyledPTag>
+            <StyledPTag>{formatDate(merchant.createdAt)}</StyledPTag>
 
             <hr />
 

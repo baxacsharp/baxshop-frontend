@@ -4,7 +4,7 @@
  *
  */
 
-// import { success } from 'react-notification-system-redux';
+import { success } from "react-notification-system-redux"
 import axios from "axios"
 import {
   ACCOUNT_CHANGE,
@@ -65,15 +65,15 @@ export const updateProfile = () => {
         ...profile,
       })
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
-      // console.log(response.user)
+      const successfulOptions = {
+        title: `Update account`,
+        message: "SuccessFully updated",
+        position: "tr",
+        autoDismiss: 1,
+      }
       dispatch({ type: FETCH_PROFILE, payload: response.data })
 
-      // dispatch(success(successfulOptions));
+      dispatch(success(successfulOptions))
     } catch (error) {
       handleError(error, dispatch)
     }

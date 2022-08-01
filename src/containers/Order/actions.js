@@ -6,7 +6,7 @@
 
 import { push } from "connected-react-router"
 import axios from "axios"
-// import { success } from 'react-notification-system-redux';
+import { success, info, warning } from "react-notification-system-redux"
 
 import {
   FETCH_ORDERS,
@@ -145,13 +145,13 @@ export const updateOrderItemStatus = (itemId, status) => {
         dispatch(fetchOrder(order._id, false))
       }
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Updated status of order`,
+        position: "tr",
+        autoDismiss: 1,
+      }
 
-      // dispatch(success(successfulOptions));
+      dispatch(success(successfulOptions))
     } catch (error) {
       handleError(error, dispatch)
     }
@@ -170,8 +170,8 @@ export const addOrder = () => {
           cartId,
           total,
         })
-        // console.log(response)
-        dispatch(push(`/order/success/${response.data._id}`))
+        console.log(response)
+        dispatch(push(`/order/success/${response.data.order._id}`))
         dispatch(clearCart())
       }
     } catch (error) {

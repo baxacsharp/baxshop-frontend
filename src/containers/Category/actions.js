@@ -5,7 +5,7 @@
  */
 
 import { goBack } from "connected-react-router"
-// import { success } from 'react-notification-system-redux';
+import { success, warning, info } from "react-notification-system-redux"
 import axios from "axios"
 
 import {
@@ -151,14 +151,15 @@ export const addCategory = () => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.post(endpoint + `category`, newCategory)
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Add category`,
+        message: "SuccessFully added",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
         dispatch({
           type: ADD_CATEGORY,
           payload: response.data.category,
@@ -209,14 +210,15 @@ export const updateCategory = () => {
         category: newCategory,
       })
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Update category`,
+        message: "SuccessFully updated",
+        position: "tr",
+        autoDismiss: 1,
+      }
 
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      if (response) {
+        dispatch(info(successfulOptions))
         dispatch(resetCategory())
         dispatch(goBack())
       }
@@ -236,15 +238,15 @@ export const activateCategory = (id, value) => {
           isActive: value,
         },
       })
-
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      console.log(response.data)
+      const successfulOptions = {
+        title: `Activated category`,
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       if (response.data) {
-        // dispatch(success(successfulOptions));
+        dispatch(success(successfulOptions))
       }
     } catch (error) {
       handleError(error, dispatch)
@@ -259,14 +261,14 @@ export const deleteCategory = (id) => {
       let endpoint = process.env.REACT_APP_BACKEND_URL
       const response = await axios.delete(endpoint + `category/${id}`)
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
-
-      if (response.data) {
-        // dispatch(success(successfulOptions));
+      const successfulOptions = {
+        title: `Delete category`,
+        message: "SuccessFully deleted",
+        position: "tr",
+        autoDismiss: 1,
+      }
+      if (response) {
+        dispatch(warning(successfulOptions))
         dispatch({
           type: REMOVE_CATEGORY,
           payload: id,

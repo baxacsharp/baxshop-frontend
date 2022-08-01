@@ -4,7 +4,7 @@
  *
  */
 
-// import { success } from 'react-notification-system-redux';
+import { success } from "react-notification-system-redux"
 import axios from "axios"
 
 import {
@@ -51,14 +51,14 @@ export const contactUs = () => {
 
       const response = await axios.post(endpoint + "contact", contact)
 
-      // const successfulOptions = {
-      //   title: `${response.data.message}`,
-      //   position: 'tr',
-      //   autoDismiss: 1
-      // };
+      const successfulOptions = {
+        title: `Your request sent. We will respond ASAP`,
+        position: "tr",
+        autoDismiss: 1,
+      }
 
       dispatch({ type: CONTACT_FORM_RESET })
-      // dispatch(success(successfulOptions));
+      dispatch(success(successfulOptions))
     } catch (error) {
       handleError(error, dispatch)
     }
