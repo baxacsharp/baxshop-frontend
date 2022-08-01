@@ -2,6 +2,7 @@
 .footer {
   flex-shrink: 0;
   border-top: $border-default;
+  bottom: 0%;
 }
 
 .footer-content {
@@ -44,6 +45,7 @@
     padding-bottom: 4px;
 
     a {
+      color: white !important;
       &:hover {
         text-decoration: underline !important;
       }

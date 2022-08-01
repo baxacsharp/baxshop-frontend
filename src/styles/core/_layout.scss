@@ -43,11 +43,13 @@ body {
 }
 
 .wrapper {
-  padding: 230px 0px 25px;
-
-  @include media-breakpoint-up(md) {
+  @media only screen and (min-width:575px){
     padding: 25px 0px;
   }
+  
+  padding: 230px 0px 25px;
+
+ 
 }
 
 img {
@@ -107,10 +109,10 @@ h6,
 .h4,
 .h5,
 .h6 {
-  color: $font-heading-color !important;
+  color: $font-heading-color ;
   font-family: $font-family-heading;
-  font-size: $font-size-heading-medium !important;
-  line-height: $line-height !important;
+  font-size: $font-size-heading-medium ;
+  line-height: $line-height ;
   text-transform: capitalize;
 }
 
@@ -126,7 +128,7 @@ h2,
 
 h3,
 .h3 {
-  font-size: 1.27em !important;
+  font-size: 1.27em ;
 }
 
 h4,

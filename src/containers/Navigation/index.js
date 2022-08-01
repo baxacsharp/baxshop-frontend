@@ -26,7 +26,7 @@ import { BarsIcon } from "../../components/Common/Icon"
 import MiniBrand from "../../components/Store//MiniBrand"
 import Menu from "../NavigationMenu"
 import Cart from "../Cart"
-
+import "../../styles/slider-animation.css"
 class Navigation extends React.PureComponent {
   componentDidMount() {
     this.props.fetchStoreBrands()
@@ -153,14 +153,11 @@ class Navigation extends React.PureComponent {
                 />
                 <Link to="/">
                   <Row>
-                    <Col style={{ marginLeft: "10px" }} xs={5}>
+                    <Col style={{ marginLeft: "10px" }} xs={11}>
                       <img
                         style={{ width: "90px" }}
                         src="https://cdn.awsli.com.br/1889/1889204/logo/437a0ea9a1.jpg"
                       />
-                    </Col>
-                    <Col xs={6}>
-                      <h1 className="logo">BaxShop</h1>
                     </Col>
                   </Row>
                 </Link>
@@ -218,15 +215,16 @@ class Navigation extends React.PureComponent {
                 />
                 <Nav navbar>
                   <Dropdown
+                    direction="left"
                     nav
                     inNavbar
                     toggle={() => this.toggleBrand()}
                     isOpen={isBrandOpen}
                   >
-                    <DropdownToggle nav>
+                    <StyledDropdownToggle nav>
                       Brands
                       <span className="fa fa-chevron-down dropdown-caret"></span>
-                    </DropdownToggle>
+                    </StyledDropdownToggle>
                     <StyledDropdown left className="nav-brand-dropdown">
                       <div className="mini-brand">
                         {brands && brands.length > 0 && (
@@ -239,20 +237,16 @@ class Navigation extends React.PureComponent {
                     </StyledDropdown>
                   </Dropdown>
                   <NavItem>
-                    <NavLink
-                      tag={ActiveLink}
-                      to="/shop"
-                      activeClassName="active"
-                    >
+                    <StyledNavLink tag={ActiveLink} to="/shop">
                       Shop
-                    </NavLink>
+                    </StyledNavLink>
                   </NavItem>
                   {authenticated ? (
                     <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav>
+                      <StyledDropdownToggle nav>
                         {user.firstName ? user.firstName : "Welcome"}
                         <span className="fa fa-chevron-down dropdown-caret"></span>
-                      </DropdownToggle>
+                      </StyledDropdownToggle>
                       <DropdownMenu right>
                         <DropdownItem
                           onClick={() => history.push("/dashboard")}
@@ -264,10 +258,10 @@ class Navigation extends React.PureComponent {
                     </UncontrolledDropdown>
                   ) : (
                     <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav>
+                      <StyledDropdownToggle nav>
                         Welcome!
                         <span className="fa fa-chevron-down dropdown-caret"></span>
-                      </DropdownToggle>
+                      </StyledDropdownToggle>
                       <DropdownMenu right>
                         <DropdownItem onClick={() => history.push("/login")}>
                           Login
@@ -335,6 +329,12 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, actions)(withRouter(Navigation))
+const StyledNavLink = styled(NavLink)`
+  color: white !important;
+`
+const StyledDropdownToggle = styled(DropdownToggle)`
+  color: white !important;
+`
 const StyledContainer = styled(Container)`
   & h1 {
     color: whitesmoke !important;

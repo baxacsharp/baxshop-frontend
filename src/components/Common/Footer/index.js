@@ -39,7 +39,7 @@ const Footer = () => {
 
   return (
     <footer style={{ backgroundColor: "#502E2E" }} className="footer">
-      <Container>
+      <Container fluid>
         <div className="footer-content">
           <div className="footer-block">
             <div className="block-title">
@@ -97,14 +97,10 @@ const Footer = () => {
 export default Footer
 
 const StyledH2 = styled.h2`
-  color: rosybrown !important;
+  color: sienna !important;
 `
 const StyledUl = styled.ul`
-  color: aquamarine !important;
-
-  & #links {
-    color: aquamarine !important;
-  }
+  color: white !important;
 `
 
 const StyledSpan = styled.span`

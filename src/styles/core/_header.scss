@@ -177,11 +177,7 @@
 
 // mini brand
 .mini-brand {
-  min-width: 270px;
-  @include media-breakpoint-up(md) {
-    min-width: 500px;
-  }
-
+  max-width: 250px;
   .min-brand-title {
     border-bottom: $border-primary;
     padding-bottom: 8px;
@@ -204,6 +200,7 @@
     .brand-item {
       flex: 100%;
       margin-bottom: 10px;
+      margin-right: 10px;
 
       @include media-breakpoint-up(md) {
         flex: 50%;

@@ -34,7 +34,6 @@ import AuthSuccess from "../AuthSuccess"
 
 import Footer from "../../components/Common/Footer"
 import Page404 from "../../components/Common/Page404"
-
 class Application extends React.PureComponent {
   componentDidMount() {
     const token = localStorage.getItem("token")
@@ -65,7 +64,7 @@ class Application extends React.PureComponent {
         <Notification />
         <Navigation />
         <StyledHeader className="main">
-          <Container>
+          <Container fluid>
             <div className="wrapper">
               <Switch>
                 <Route exact path="/" component={HomePage} />
