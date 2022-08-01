@@ -57,7 +57,7 @@ class ProductPage extends React.PureComponent {
     } = this.props
     // console.log(product)
     return (
-      <div className="product-shop">
+      <div className="product-shop" style={{ overflowX: "hidden" }}>
         {isLoading ? (
           <LoadingIndicator />
         ) : product.product && Object.keys(product).length > 0 ? (
